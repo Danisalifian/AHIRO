@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Tab>
+    <tab
+        id="@+id/nav_beranda"
+        icon="@mipmap/home_40"
+        activeColor="@color/colorPrimary"
+        titleSize="2dp"
+        title="Beranda"
+        />
+
+    <tab
+        id="@+id/nav_keranjang"
+        icon="@mipmap/cart_40"
+        activeColor="@color/colorPrimary"
+        titleSize="2dp"
+        title="Keranjang"
+        />
+
+    <tab
+        id="@+id/nav_transaksi"
+        icon="@mipmap/transaction_40"
+        activeColor="@color/colorPrimary"
+        titleSize="2dp"
+        title="Transaksi"
+        />
+
+    <tab
+        id="@+id/nav_akun"
+        icon="@mipmap/account_40"
+        activeColor="@color/colorPrimary"
+        titleSize="2dp"
+        title="Akun"
+        />
+</Tab>
