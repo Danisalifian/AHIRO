@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetailProdukActivity"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nama Produk"
+        android:id="@+id/tvDProduk"
+        android:layout_margin="20dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Deskripsi"
+        android:id="@+id/tvDDeskripsi"
+        android:layout_margin="20dp"
+        android:layout_below="@+id/tvDProduk"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvDBerat"
+        android:text="Berat"
+        android:layout_margin="20dp"
+        android:layout_below="@+id/tvDDeskripsi"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Harga Produk"
+        android:id="@+id/tvDHarga"
+        android:layout_below="@+id/tvDBerat"
+        android:layout_margin="20dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvDStok"
+        android:text="Stok"
+        android:layout_margin="20dp"
+        android:layout_below="@+id/tvDHarga"/>
+
+
+</RelativeLayout>

@@ -36,14 +36,14 @@ public class BerandaFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_beranda, container, false);
 
         produkList = new ArrayList<>();
-        produkList.add(new Produk("Produk 1", "10000"));
-        produkList.add(new Produk("Produk 2", "20000"));
-        produkList.add(new Produk("Produk 3", "30000"));
-        produkList.add(new Produk("Produk 4", "40000"));
-        produkList.add(new Produk("Produk 5", "50000"));
-        produkList.add(new Produk("Produk 6", "60000"));
-        produkList.add(new Produk("Produk 7", "70000"));
-        produkList.add(new Produk("Produk 8", "80000"));
+        produkList.add(new Produk("Produk 1", "deskripsi 1","10","20000","20"));
+        produkList.add(new Produk("Produk 2", "deskripsi 2","10","20000","20"));
+        produkList.add(new Produk("Produk 3", "deskripsi 3","10","20000","20"));
+        produkList.add(new Produk("Produk 4", "deskripsi 4","10","20000","20"));
+        produkList.add(new Produk("Produk 5", "deskripsi 5","10","20000","20"));
+        produkList.add(new Produk("Produk 6", "deskripsi 6","10","20000","20"));
+        produkList.add(new Produk("Produk 7", "deskripsi 7","10","20000","20"));
+        produkList.add(new Produk("Produk 8", "deskripsi 8","10","20000","20"));
 
         RecyclerView rvProduk = (RecyclerView)v.findViewById(R.id.rvProduk);
         produkAdapter myAdapter = new produkAdapter(getContext(),produkList);
