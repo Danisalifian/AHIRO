@@ -43,7 +43,7 @@ public class TransaksiFragment extends Fragment {
         tabLayout = (TabLayout)v.findViewById(R.id.tabLayout);
         viewPager = (ViewPager)v.findViewById(R.id.vPager);
 
-        ViewPagerAdapter adapter = new ViewPagerAdapter(activity.getSupportFragmentManager());
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
         //Menambahkan fragment
         adapter.AddFragment(new TabBelumLunas(),"Belum Lunas");
         adapter.AddFragment(new TabLunas(),"Lunas");
