@@ -1,21 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".BerandaFragment"
-    android:orientation="vertical">
-
-    <android.support.v7.widget.Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tbBeranda"
-        android:background="@color/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
-    </android.support.v7.widget.Toolbar>
+    android:orientation="vertical"
+    android:theme="@style/AppTheme.NoActionBar">
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
@@ -23,5 +14,20 @@
         android:id="@+id/rvProduk"
         android:layout_below="@+id/tbBeranda">
     </android.support.v7.widget.RecyclerView>
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:id="@+id/tbBeranda"
+        android:background="@color/colorPrimary">
+    </android.support.v7.widget.Toolbar>
+
+    <com.miguelcatalan.materialsearchview.MaterialSearchView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/search_view">
+    </com.miguelcatalan.materialsearchview.MaterialSearchView>
+
+
 
 </RelativeLayout>

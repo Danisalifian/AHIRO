@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".AkunFragment">
+    tools:context=".AkunFragment"
+    android:background="#f0f0f0">
 
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
@@ -16,11 +17,178 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
     </android.support.v7.widget.Toolbar>
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Fragment akun"
-        android:layout_below="@+id/tbAkun"/>
+        android:layout_height="wrap_content"
+        android:id="@+id/layoutAkun"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/tbAkun"
+        android:background="@android:color/white">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/profil"
+            android:id="@+id/tvPersonal"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:alpha=".3"
+            android:background="@android:color/black"
+            android:layout_below="@+id/tvPersonal"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvNama"
+            android:text="@string/Nama"
+            android:textSize="15sp"
+            android:layout_below="@id/tvPersonal"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:alpha=".3"
+            android:background="@android:color/black"
+            android:layout_below="@+id/tvNama"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvLahir"
+            android:text="@string/tanggal_lahir"
+            android:layout_below="@+id/tvNama"
+            android:textSize="15sp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:alpha=".3"
+            android:background="@android:color/black"
+            android:layout_below="@+id/tvLahir"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvGender"
+            android:text="@string/jenis_kelamin"
+            android:layout_below="@+id/tvLahir"
+            android:textSize="15sp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:alpha=".3"
+            android:background="@android:color/black"
+            android:layout_below="@+id/tvGender"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvTelepon"
+            android:text="@string/telepon"
+            android:layout_below="@+id/tvGender"
+            android:textSize="15sp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:alpha=".3"
+            android:background="@android:color/black"
+            android:layout_below="@+id/tvTelepon"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvEmail"
+            android:text="@string/email"
+            android:layout_below="@+id/tvTelepon"
+            android:textSize="15sp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:alpha=".3"
+            android:background="@android:color/black"
+            android:layout_below="@+id/tvEmail"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@+id/layoutAkun"
+        android:layout_marginTop="15dp"
+        android:background="@android:color/white">
+
+        <TextView
+            android:id="@+id/Alamat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/alamat"
+            android:textColor="@android:color/black"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/Alamat"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:alpha=".3"
+            android:background="@android:color/black" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ubah"
+            android:textAllCaps="false"
+            android:layout_alignParentBottom="true"
+            android:layout_alignStart="@+id/Alamat"
+            android:layout_marginBottom="15dp" />
+    </RelativeLayout>
 
 </RelativeLayout>
