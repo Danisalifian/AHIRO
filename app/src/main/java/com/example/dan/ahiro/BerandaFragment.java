@@ -1,11 +1,13 @@
 package com.example.dan.ahiro;
 
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -15,13 +17,17 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.dan.ahiro.model.Produk;
 import com.example.dan.ahiro.adapter.produkAdapter;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 
 /**
@@ -29,10 +35,13 @@ import java.util.List;
  */
 public class BerandaFragment extends Fragment{
 
-    List<Produk> produkList;
     private Toolbar toolbar;
     String[] list;
     MaterialSearchView searchView;
+    DatabaseReference databaseReference;
+    FirebaseRecyclerOptions<Produk> options;
+    FirebaseRecyclerAdapter<Produk, produkAdapter> adapter;
+    CardView cvProduk;
 
     public BerandaFragment() {
         // Required empty public constructor
@@ -53,6 +62,8 @@ public class BerandaFragment extends Fragment{
 
         toolbar = (Toolbar)v.findViewById(R.id.tbBeranda);
         AppCompatActivity activity = (AppCompatActivity)getActivity();
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Products");
+        RecyclerView rvProduk = (RecyclerView)v.findViewById(R.id.rvProduk);
 
         activity.setSupportActionBar(toolbar);
         activity.getSupportActionBar().setTitle("Beranda");
@@ -87,20 +98,63 @@ public class BerandaFragment extends Fragment{
             }
         });
 
-        produkList = new ArrayList<>();
-        produkList.add(new Produk("Produk 1", "deskripsi 1","10","20000","20"));
-        produkList.add(new Produk("Produk 2", "deskripsi 2","10","20000","20"));
-        produkList.add(new Produk("Produk 3", "deskripsi 3","10","20000","20"));
-        produkList.add(new Produk("Produk 4", "deskripsi 4","10","20000","20"));
-        produkList.add(new Produk("Produk 5", "deskripsi 5","10","20000","20"));
-        produkList.add(new Produk("Produk 6", "deskripsi 6","10","20000","20"));
-        produkList.add(new Produk("Produk 7", "deskripsi 7","10","20000","20"));
-        produkList.add(new Produk("Produk 8", "deskripsi 8","10","20000","20"));
+        //Recycler View
+        options = new FirebaseRecyclerOptions.Builder<Produk>()
+                .setQuery(databaseReference,Produk.class).build();
+        adapter = new FirebaseRecyclerAdapter<Produk, produkAdapter>(options) {
+            @Override
+            protected void onBindViewHolder(produkAdapter holder, final int position, final Produk model) {
+                holder.tvNamaProduk.setText(model.getProductname());
+                holder.tvHarga.setText(model.getPrice());
+                Picasso.get().load(model.getImage()).into(holder.ivGambar, new Callback() {
+                    @Override
+                    public void onSuccess() {
 
-        RecyclerView rvProduk = (RecyclerView)v.findViewById(R.id.rvProduk);
-        produkAdapter myAdapter = new produkAdapter(getContext(),produkList);
-        rvProduk.setLayoutManager(new GridLayoutManager(getContext(),2));
-        rvProduk.setAdapter(myAdapter);
+                    }
+
+                    @Override
+                    public void onError(Exception e) {
+                        Toast.makeText(getContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+//                        Toast.makeText(getContext(),"You clicked view", Toast.LENGTH_SHORT).show();
+                        String productname = model.getProductname();
+                        String description = model.getDescription();
+                        String weight = model.getWeight();
+                        String price = model.getPrice();
+                        String stock = model.getStock();
+
+                        Intent intent = new Intent(getContext(), DetailProductActivity.class);
+                        intent.putExtra("productId",adapter.getRef(position).getKey());//passing productId
+                        intent.putExtra("productname", productname);
+                        intent.putExtra("description", description);
+                        intent.putExtra("weight", weight);
+                        intent.putExtra("price", price);
+                        intent.putExtra("stock", stock);
+                        startActivity(intent);
+                    }
+                });
+
+            }
+
+            @Override
+            public produkAdapter onCreateViewHolder(ViewGroup parent, int viewType) {
+
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_produk,parent,false);
+
+                return new produkAdapter(view);
+            }
+        };
+
+        rvProduk.setHasFixedSize(true);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),2);
+        rvProduk.setLayoutManager(gridLayoutManager);
+        adapter.startListening();
+        rvProduk.setAdapter(adapter);
 
         return v;
     }
@@ -112,5 +166,29 @@ public class BerandaFragment extends Fragment{
         MenuItem item = menu.findItem(R.id.action_search);
         searchView.setMenuItem(item);
 //        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (adapter != null){
+            adapter.startListening();
+        }
+    }
+
+    @Override
+    public void onStop() {
+        if (adapter != null){
+            adapter.stopListening();
+        }
+        super.onStop();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (adapter != null){
+            adapter.startListening();
+        }
     }
 }

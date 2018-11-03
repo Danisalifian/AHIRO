@@ -1,61 +1,64 @@
 package com.example.dan.ahiro.model;
 
 public class Produk {
-    public String namaproduk;
-    public String deskripsi;
-    public String berat;
-    public String harga;
-    public String stok;
+    public String productname, description, weight, price, stock, image;
 
-    public Produk(){
+    public Produk(){}
 
+    public Produk(String productname, String description, String weight, String price, String stock, String image) {
+        this.productname = productname;
+        this.description = description;
+        this.weight = weight;
+        this.price = price;
+        this.stock = stock;
+        this.image = image;
     }
 
-    public Produk(String namaproduk, String deskripsi, String berat, String harga, String stok) {
-        this.namaproduk = namaproduk;
-        this.deskripsi = deskripsi;
-        this.berat = berat;
-        this.harga = harga;
-        this.stok = stok;
+    public String getProductname() {
+        return productname;
     }
 
-    public String getNamaproduk() {
-        return namaproduk;
+    public void setProductname(String productname) {
+        this.productname = productname;
     }
 
-    public void setNamaproduk(String namaproduk) {
-        this.namaproduk = namaproduk;
+    public String getDescription() {
+        return description;
     }
 
-    public String getDeskripsi() {
-        return deskripsi;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public void setDeskripsi(String deskripsi) {
-        this.deskripsi = deskripsi;
+    public String getWeight() {
+        return weight;
     }
 
-    public String getBerat() {
-        return berat;
+    public void setWeight(String weight) {
+        this.weight = weight;
     }
 
-    public void setBerat(String berat) {
-        this.berat = berat;
+    public String getPrice() {
+        return price;
     }
 
-    public String getHarga() {
-        return harga;
+    public void setPrice(String price) {
+        this.price = price;
     }
 
-    public void setHarga(String harga) {
-        this.harga = harga;
+    public String getStock() {
+        return stock;
     }
 
-    public String getStok() {
-        return stok;
+    public void setStock(String stock) {
+        this.stock = stock;
     }
 
-    public void setStok(String stok) {
-        this.stok = stok;
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "499614497003",
+    "firebase_url": "https://ahiro-c0196.firebaseio.com",
+    "project_id": "ahiro-c0196",
+    "storage_bucket": "ahiro-c0196.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:499614497003:android:7a8aab7069297e43",
+        "android_client_info": {
+          "package_name": "com.example.dan.ahiro"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "499614497003-rpne1o8uabikncrt4p0ta6tmdu5od7ug.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.dan.ahiro",
+            "certificate_hash": "02927307c36a1443d44165bf21aa939511eb500e"
+          }
+        },
+        {
+          "client_id": "499614497003-o7tlsthirsult2l7je15ve9l356r9o0f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDitmI6TGJdGrgnfGzOo8jE28iK0DesS_M"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "499614497003-o7tlsthirsult2l7je15ve9l356r9o0f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
