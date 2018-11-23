@@ -63,14 +63,13 @@ public class KeranjangFragment extends Fragment {
 
 
         keranjangList = new ArrayList<>();
-        keranjangList.add(new Keranjang("Keranjang1","10000","20"));
-        keranjangList.add(new Keranjang("Keranjang2","10000","20"));
-        keranjangList.add(new Keranjang("Keranjang3","10000","20"));
-        keranjangList.add(new Keranjang("Keranjang4","10000","20"));
-        keranjangList.add(new Keranjang("Keranjang5","10000","20"));
-        keranjangList.add(new Keranjang("Keranjang6","10000","20"));
-        keranjangList.add(new Keranjang("Keranjang7","10000","20"));
-        keranjangList.add(new Keranjang("Keranjang8","10000","20"));
+        keranjangList.add(new Keranjang("Keranjang1","vitamin","10","10000","20"));
+        keranjangList.add(new Keranjang("Keranjang2","vitamin1","10","10000","20"));
+        keranjangList.add(new Keranjang("Keranjang3","vitamin2","10","10000","20"));
+        keranjangList.add(new Keranjang("Keranjang2","vitamin3","10","10000","20"));
+        keranjangList.add(new Keranjang("Keranjang2","vitamin4","10","10000","20"));
+        keranjangList.add(new Keranjang("Keranjang2","vitamin5","10","10000","20"));
+        keranjangList.add(new Keranjang("Keranjang2","vitamin6","10","10000","20"));
 
         RecyclerView rvKeranjang =(RecyclerView)v.findViewById(R.id.rvKeranjang);
         keranjangAdapter myAdapter =new keranjangAdapter(getContext(),keranjangList);

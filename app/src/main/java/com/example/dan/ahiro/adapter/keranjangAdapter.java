@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.dan.ahiro.DetailProductActivity;
-
 import com.example.dan.ahiro.R;
 import com.example.dan.ahiro.model.Keranjang;
 
@@ -49,6 +48,8 @@ public class keranjangAdapter extends RecyclerView.Adapter <keranjangAdapter.MyV
 
                 //passing data ke DetailProdukActivity
                 intent.putExtra("namaproduk",kdata.get(position).getNamaprodukk());
+                intent.putExtra("deskripsi", kdata.get(position).getDeskripsik());
+                intent.putExtra("berat", kdata.get(position).getBeratk());
                 intent.putExtra("harga",kdata.get(position).getHargak());
                 intent.putExtra("jumlah",kdata.get(position).getJumlahk());
                 kcontext.startActivity(intent);
