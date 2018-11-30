@@ -1,4 +1,4 @@
-package com.example.dan.ahiro.model;
+package com.example.dan.ahiro.Model;
 
 public class Produk {
     public String productname, description, weight, price, stock, image;

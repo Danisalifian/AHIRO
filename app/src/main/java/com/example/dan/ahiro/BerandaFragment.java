@@ -19,7 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.dan.ahiro.model.Produk;
+import com.example.dan.ahiro.Model.Produk;
 import com.example.dan.ahiro.adapter.produkAdapter;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;

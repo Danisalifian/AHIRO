@@ -1,20 +1,20 @@
-package com.example.dan.ahiro.model;
+package com.example.dan.ahiro.Model;
 
 public class User {
-    public String nik, nama, alamat, area, email, password, telepon, gender;
+    public String nik, name, address, area, email, password, phone, gender;
 
     public User(){
 
     }
 
-    public User(String nik, String nama, String alamat, String area, String email, String password, String telepon, String gender) {
+    public User(String nik, String name, String address, String area, String email, String password, String phone, String gender) {
         this.nik = nik;
-        this.nama = nama;
-        this.alamat = alamat;
+        this.name = name;
+        this.address = address;
         this.area = area;
         this.email = email;
         this.password = password;
-        this.telepon = telepon;
+        this.phone = phone;
         this.gender = gender;
     }
 
@@ -26,20 +26,20 @@ public class User {
         this.nik = nik;
     }
 
-    public String getNama() {
-        return nama;
+    public String getName() {
+        return name;
     }
 
-    public void setNama(String nama) {
-        this.nama = nama;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getAlamat() {
-        return alamat;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAlamat(String alamat) {
-        this.alamat = alamat;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getArea() {
@@ -66,12 +66,12 @@ public class User {
         this.password = password;
     }
 
-    public String getTelepon() {
-        return telepon;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setTelepon(String telepon) {
-        this.telepon = telepon;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getGender() {
