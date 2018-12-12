@@ -3,6 +3,7 @@ package com.example.dan.ahiro;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.support.v7.app.AppCompatActivity;
@@ -22,6 +23,7 @@ public class DetailProductActivity extends AppCompatActivity {
     ImageView ivGambar;
     ElegantNumberButton numberButton;
     CollapsingToolbarLayout collapsingToolbarLayout;
+    private Toolbar toolbar;
 
     String productId = "";
 
@@ -32,6 +34,14 @@ public class DetailProductActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_product);
+
+        toolbar = findViewById(R.id.Dtoolbar);
+        setSupportActionBar(toolbar);
+
+        if (getSupportActionBar() != null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
 
         //Firebase
         database = FirebaseDatabase.getInstance();
@@ -47,8 +57,8 @@ public class DetailProductActivity extends AppCompatActivity {
         ivGambar = findViewById(R.id.ivGambar);
         numberButton = findViewById(R.id.number_button);
 
-        collapsingToolbarLayout.setExpandedTitleColor(R.style.ExpandedAppbar);
-        collapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.CollapsedAppbar);
+//        collapsingToolbarLayout.setExpandedTitleColor(R.style.ExpandedAppbar);
+//        collapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.CollapsedAppbar);
 
         //get Id from intent
         if (getIntent() != null)

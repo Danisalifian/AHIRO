@@ -13,14 +13,4 @@
         android:layout_below="@+id/tbBlunas">
     </android.support.v7.widget.RecyclerView>
 
-    <android.support.v7.widget.Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tbBlunas"
-        android:background="@color/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
-    </android.support.v7.widget.Toolbar>
-
 </RelativeLayout>

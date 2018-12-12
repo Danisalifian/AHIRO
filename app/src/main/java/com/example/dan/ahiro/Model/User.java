@@ -1,13 +1,14 @@
 package com.example.dan.ahiro.Model;
 
 public class User {
-    public String nik, name, address, area, email, password, phone, gender;
+    public String uid, nik, name, address, area, email, password, phone, gender;
 
     public User(){
 
     }
 
-    public User(String nik, String name, String address, String area, String email, String password, String phone, String gender) {
+    public User(String uid, String nik, String name, String address, String area, String email, String password, String phone, String gender) {
+        this.uid = uid;
         this.nik = nik;
         this.name = name;
         this.address = address;
@@ -16,6 +17,14 @@ public class User {
         this.password = password;
         this.phone = phone;
         this.gender = gender;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
     public String getNik() {

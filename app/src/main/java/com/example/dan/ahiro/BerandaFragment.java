@@ -62,7 +62,7 @@ public class BerandaFragment extends Fragment{
 
         toolbar = (Toolbar)v.findViewById(R.id.tbBeranda);
         AppCompatActivity activity = (AppCompatActivity)getActivity();
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("Products");
+        databaseReference = FirebaseDatabase.getInstance().getReference("Products");
         RecyclerView rvProduk = (RecyclerView)v.findViewById(R.id.rvProduk);
 
         activity.setSupportActionBar(toolbar);
