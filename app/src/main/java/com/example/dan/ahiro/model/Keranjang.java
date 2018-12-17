@@ -1,56 +1,64 @@
 package com.example.dan.ahiro.model;
 
 public class Keranjang {
-    public String namaprodukk;
-    public String hargak;
-    public String jumlahk,deskripsik,beratk;
+    public String productname;
+    public String description;
+    public String weight, price, stock, image;
 
-    public Keranjang (String namaprodukk,String deskripsik ,String beratk,String hargak ,String jumlahk){
-        this.namaprodukk = namaprodukk ;
-        this.hargak = hargak ;
-        this.jumlahk = jumlahk ;
-        this.deskripsik = deskripsik;
-        this.beratk = beratk;
+    public Keranjang(String productname, String description, String weight, String price, String stock, String image) {
+        this.productname = productname;
+        this.description = description;
+        this.weight = weight;
+        this.price = price;
+        this.stock = stock;
+        this.image = image;
     }
 
-    public String getNamaprodukk() {
-        return namaprodukk;
+    public String getProductname() {
+        return productname;
     }
 
-    public void setNamaprodukk(String namaprodukk) {
-        this.namaprodukk = namaprodukk;
+    public void setProductname(String productname) {
+        this.productname = productname;
     }
 
-    public String getHargak() {
-        return hargak;
+    public String getDescription() {
+        return description;
     }
 
-    public void setHargak(String hargak) {
-        this.hargak = hargak;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public String getJumlahk() {
-        return jumlahk;
+    public String getWeight() {
+        return weight;
     }
 
-    public void setJumlahk(String jumlahk) {
-        this.jumlahk = jumlahk;
+    public void setWeight(String weight) {
+        this.weight = weight;
     }
 
-    public String getDeskripsik() {
-        return deskripsik;
+    public String getPrice() {
+        return price;
     }
 
-    public void setDeskripsik(String deskripsik) {
-        this.deskripsik = deskripsik;
+    public void setPrice(String price) {
+        this.price = price;
     }
 
-    public String getBeratk() {
-        return beratk;
+    public String getStock() {
+        return stock;
     }
 
-    public void setBeratk(String beratk) {
-        this.beratk = beratk;
+    public void setStock(String stock) {
+        this.stock = stock;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 }
