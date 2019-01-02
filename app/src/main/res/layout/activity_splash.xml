@@ -5,18 +5,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Splash">
+    tools:context=".Splash"
+    android:background="@color/colorPrimaryDark">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Splash screen"
-        android:layout_margin="40dp"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Go to login"
-        android:layout_margin="80dp"
-        android:id="@+id/btnGTL"/>
+        android:text="AHIRO"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="45sp"
+        android:layout_marginTop="250dp"
+        android:textColor="@android:color/white"/>
 
 </RelativeLayout>

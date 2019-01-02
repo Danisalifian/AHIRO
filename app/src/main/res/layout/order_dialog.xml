@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="@color/colorAccent">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/orderClose"
+        android:src="@drawable/ic_close_black_24dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginRight="10dp"
+        android:elevation="5dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"/>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="5dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Berhasil Masuk Keranjang"
+                    android:textColor="@android:color/black"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:textStyle="bold"/>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="5dp">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:alpha=".3"
+                    android:background="@android:color/black"/>
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:stretchColumns="1">
+                    <TableRow>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Nama Produk"
+                            android:textColor="@android:color/black"
+                            android:textSize="12sp"
+                            android:layout_margin="15dp"
+                            android:layout_marginBottom="20dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/dialogNamaProduk"
+                            android:text="Nama Produk"
+                            android:textColor="@android:color/black"
+                            android:textSize="12sp"
+                            android:layout_margin="15dp"
+                            android:layout_marginBottom="20dp"/>
+                    </TableRow>
+
+                    <TableRow>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Harga"
+                            android:textSize="13dp"
+                            android:textStyle="bold"
+                            android:textColor="@android:color/black"
+                            android:layout_margin="15dp"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/dialogHarga"
+                            android:text="Harga"
+                            android:textSize="13dp"
+                            android:textStyle="bold"
+                            android:textColor="@android:color/black"
+                            android:layout_margin="15dp"/>
+                    </TableRow>
+
+                    <TableRow>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Jumlah"
+                            android:textSize="13dp"
+                            android:textStyle="bold"
+                            android:textColor="@android:color/black"
+                            android:layout_margin="15dp"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/dialogJumlah"
+                            android:text="Jumlah"
+                            android:textSize="13dp"
+                            android:textStyle="bold"
+                            android:textColor="@android:color/black"
+                            android:layout_margin="15dp"
+                            android:layout_above="@+id/btnOrder"/>
+                    </TableRow>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:alpha=".3"
+                        android:background="@android:color/black"/>
+
+                    <TableRow>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Subtotal"
+                            android:textSize="13dp"
+                            android:textStyle="bold"
+                            android:textColor="@android:color/black"
+                            android:layout_margin="15dp"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Subtotal"
+                            android:id="@+id/dialogSubtotal"
+                            android:textSize="13dp"
+                            android:textStyle="bold"
+                            android:textColor="@android:color/black"
+                            android:layout_margin="15dp"/>
+                    </TableRow>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Belum termasuk biaya kirim"
+                        android:layout_marginLeft="15dp"
+                        android:textSize="12sp"/>
+
+                </TableLayout>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:id="@+id/btnLanjutbayar"
+                    android:background="@drawable/rounded_button"
+                    android:layout_margin="10dp"
+                    android:textColor="@android:color/white"
+                    android:text="Lanjut ke pembayaran"
+                    android:textAllCaps="false"/>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:id="@+id/btnOrderlagi"
+                    android:background="@android:color/white"
+                    android:layout_margin="10dp"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="Tambah barang lagi"
+                    android:textAllCaps="false"
+                    android:gravity="center"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>

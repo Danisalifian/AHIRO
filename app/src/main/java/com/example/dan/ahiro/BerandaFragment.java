@@ -42,6 +42,7 @@ public class BerandaFragment extends Fragment{
     FirebaseRecyclerOptions<Produk> options;
     FirebaseRecyclerAdapter<Produk, produkAdapter> adapter;
     CardView cvProduk;
+    RecyclerView rvProduk;
 
     public BerandaFragment() {
         // Required empty public constructor
@@ -63,7 +64,7 @@ public class BerandaFragment extends Fragment{
         toolbar = (Toolbar)v.findViewById(R.id.tbBeranda);
         AppCompatActivity activity = (AppCompatActivity)getActivity();
         databaseReference = FirebaseDatabase.getInstance().getReference("Products");
-        RecyclerView rvProduk = (RecyclerView)v.findViewById(R.id.rvProduk);
+        rvProduk = (RecyclerView)v.findViewById(R.id.rvProduk);
 
         activity.setSupportActionBar(toolbar);
         activity.getSupportActionBar().setTitle("Beranda");
@@ -105,7 +106,7 @@ public class BerandaFragment extends Fragment{
             @Override
             protected void onBindViewHolder(produkAdapter holder, final int position, final Produk model) {
                 holder.tvNamaProduk.setText(model.getProductname());
-                holder.tvHarga.setText(model.getPrice());
+                holder.tvHarga.setText("Rp. " + model.getPrice());
                 Picasso.get().load(model.getImage()).into(holder.ivGambar, new Callback() {
                     @Override
                     public void onSuccess() {
@@ -115,6 +116,26 @@ public class BerandaFragment extends Fragment{
                     @Override
                     public void onError(Exception e) {
                         Toast.makeText(getContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                holder.btnOrder.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String productname = model.getProductname();
+                        String description = model.getDescription();
+                        String weight = model.getWeight();
+                        String price = model.getPrice();
+                        String stock = model.getStock();
+
+                        Intent intent = new Intent(getContext(), DetailProductActivity.class);
+                        intent.putExtra("productId",adapter.getRef(position).getKey());//passing productId
+                        intent.putExtra("productname", productname);
+                        intent.putExtra("description", description);
+                        intent.putExtra("weight", weight);
+                        intent.putExtra("price", price);
+                        intent.putExtra("stock", stock);
+                        startActivity(intent);
                     }
                 });
 

@@ -112,7 +112,7 @@
                                 android:layout_marginTop="10dp"
                                 android:layout_marginLeft="10dp"
                                 android:layout_marginBottom="18dp"
-                                app:textSize="8sp"
+                                app:textSize="7sp"
                                 app:backGroundColor="@color/colorAccent"
                                 app:initialNumber="1">
                             </com.cepheuen.elegantnumberbutton.view.ElegantNumberButton>
@@ -208,15 +208,17 @@
             android:orientation="horizontal">
 
             <ImageButton
-                android:layout_width="match_parent"
+                android:layout_width="60dp"
                 android:layout_height="match_parent"
                 android:background="@drawable/rounded_button"
                 android:layout_margin="10dp"
+                android:id="@+id/btnCart"
                 android:src="@mipmap/cart_white_40"/>
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:id="@+id/btnDOrder"
                 android:layout_margin="10dp"
                 android:background="@drawable/rounded_button"
                 android:text="Order"

@@ -54,17 +54,6 @@
                             android:textColor="@android:color/black"
                             android:textStyle="bold"/>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/infoEdit"
-                            android:text="Edit"
-                            android:layout_margin="10dp"
-                            android:layout_alignParentEnd="true"
-                            android:layout_alignParentRight="true"
-                            android:textStyle="bold"
-                            android:textColor="@android:color/holo_blue_light"/>
-
                     </RelativeLayout>
 
                     <TextView
@@ -73,11 +62,12 @@
                         android:text="Nama"
                         android:layout_margin="10dp"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:id="@+id/tvName"
+                    <com.rengwuxian.materialedittext.MaterialEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/metName"
                         android:text="Nama Pengguna"
+                        android:textSize="13sp"
                         android:textColor="@android:color/black"
                         android:layout_marginLeft="10dp"/>
 
@@ -87,11 +77,12 @@
                         android:text="Gender"
                         android:layout_margin="10dp"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:id="@+id/tvGender"
+                    <com.rengwuxian.materialedittext.MaterialEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/metGender"
                         android:text="Laki-laki"
+                        android:textSize="13sp"
                         android:textColor="@android:color/black"
                         android:layout_marginLeft="10dp"/>
 
@@ -101,10 +92,11 @@
                         android:text="Tanggal Lahir"
                         android:layout_margin="10dp"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                    <com.rengwuxian.materialedittext.MaterialEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:text="01-01-1990"
+                        android:textSize="13sp"
                         android:textColor="@android:color/black"
                         android:layout_marginLeft="10dp"
                         android:layout_marginBottom="10dp"/>
@@ -115,41 +107,15 @@
                         android:text="Telepon"
                         android:layout_margin="10dp"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:id="@+id/tvPhone"
+                    <com.rengwuxian.materialedittext.MaterialEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/metPhone"
                         android:text="087675XXX"
+                        android:textSize="13sp"
                         android:textColor="@android:color/black"
                         android:layout_marginLeft="10dp"
                         android:layout_marginBottom="10dp"/>
-
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
-                            android:text="Batal"
-                            android:id="@+id/persBatal"
-                            android:layout_toLeftOf="@+id/persPerbarui"
-                            android:textColor="@android:color/holo_blue_light"
-                            android:textStyle="bold"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
-                            android:text="Perbarui"
-                            android:id="@+id/persPerbarui"
-                            android:layout_alignParentRight="true"
-                            android:layout_alignParentEnd="true"
-                            android:textColor="@android:color/holo_blue_light"
-                            android:textStyle="bold"/>
-
-                    </RelativeLayout>
 
                 </LinearLayout>
 
@@ -195,33 +161,6 @@
                         android:inputType="textPassword"
                         android:layout_margin="10dp" />
 
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
-                            android:text="Batal"
-                            android:id="@+id/emBatal"
-                            android:layout_toLeftOf="@+id/emPerbarui"
-                            android:textColor="@android:color/holo_blue_light"
-                            android:textStyle="bold"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
-                            android:text="Perbarui"
-                            android:id="@+id/emPerbarui"
-                            android:layout_alignParentEnd="true"
-                            android:layout_alignParentRight="true"
-                            android:textColor="@android:color/holo_blue_light"
-                            android:textStyle="bold"/>
-
-                    </RelativeLayout>
-
                 </LinearLayout>
 
             </android.support.v7.widget.CardView>
@@ -250,36 +189,22 @@
                         android:layout_margin="10dp"
                         android:maxLines="4"/>
 
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
-                            android:text="Batal"
-                            android:id="@+id/almBatal"
-                            android:layout_toLeftOf="@+id/almPerbarui"
-                            android:textColor="@android:color/holo_blue_light"
-                            android:textStyle="bold"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
-                            android:text="Perbarui"
-                            android:id="@+id/almPerbarui"
-                            android:layout_alignParentRight="true"
-                            android:layout_alignParentEnd="true"
-                            android:textColor="@android:color/holo_blue_light"
-                            android:textStyle="bold"/>
-
-                    </RelativeLayout>
-
                 </LinearLayout>
 
             </android.support.v7.widget.CardView>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Perbarui"
+                android:textAllCaps="false"
+                android:background="@android:color/white"
+                android:id="@+id/almPerbarui"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:textColor="@android:color/holo_blue_light"
+                android:textStyle="bold"/>
 
             <Button
                 android:layout_width="match_parent"

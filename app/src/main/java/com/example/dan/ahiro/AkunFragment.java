@@ -12,16 +12,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.dan.ahiro.Model.User;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -30,10 +35,11 @@ import com.rengwuxian.materialedittext.MaterialEditText;
 public class AkunFragment extends Fragment {
 
     private Toolbar toolbar;
-    private TextView tvName, tvGender, tvPhone, tvEmail;
-    private MaterialEditText metAddress, metUPassword;
+    private TextView tvEmail;
+    private MaterialEditText metAddress, metUPassword, metName, metGender, metPhone;
     private String uid;
-    private Button btnLogout;
+    private Button btnLogout, btnalmPerbarui;
+    DatabaseReference agenDB;
 
     private static final String TAG = "AkunFragment";
 
@@ -48,21 +54,24 @@ public class AkunFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_akun, container, false);
 
-        tvName = v.findViewById(R.id.tvName);
+        metName = v.findViewById(R.id.metName);
         tvEmail = v.findViewById(R.id.tvEmail);
-        tvGender = v.findViewById(R.id.tvGender);
-        tvPhone = v.findViewById(R.id.tvPhone);
+        metGender = v.findViewById(R.id.metGender);
+        metPhone = v.findViewById(R.id.metPhone);
         metAddress = v.findViewById(R.id.metAddress);
         metUPassword = v.findViewById(R.id.metUPassword);
         btnLogout = v.findViewById(R.id.btnLogout);
+        btnalmPerbarui = v.findViewById(R.id.almPerbarui);
 
         //get userId
         uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         //Query Select * from Users where id="uid"
-        Query query = FirebaseDatabase.getInstance().getReference("Users").orderByChild("uid")
+        Query query = FirebaseDatabase.getInstance().getReference().child("Users").orderByChild("uid")
                 .equalTo(uid);
         query.addValueEventListener(valueEventListener);
+
+        agenDB = FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
 
         toolbar = (Toolbar)v.findViewById(R.id.tbAkun);
         AppCompatActivity activity = (AppCompatActivity)getActivity();
@@ -78,7 +87,32 @@ public class AkunFragment extends Fragment {
             }
         });
 
+        btnalmPerbarui.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                perbaruiAgen();
+            }
+        });
+
         return v;
+    }
+
+    private void perbaruiAgen() {
+        String Uaddress = metAddress.getText().toString().trim();
+        String Uname = metName.getText().toString().trim();
+        String Uphone = metPhone.getText().toString().trim();
+
+        Map updateMap = new HashMap();
+        updateMap.put("address", Uaddress);
+        updateMap.put("name", Uname);
+        updateMap.put("phone", Uphone);
+
+        agenDB.updateChildren(updateMap).addOnSuccessListener(new OnSuccessListener() {
+            @Override
+            public void onSuccess(Object o) {
+                Toast.makeText(getContext(), "Data telah diperbarui", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     ValueEventListener valueEventListener = new ValueEventListener() {
@@ -95,9 +129,9 @@ public class AkunFragment extends Fragment {
                 user.setPassword(ds.getValue(User.class).getPassword());
 
 //                Log.d(TAG,"name:" + user.getName());
-                tvName.setText(user.getName());
-                tvGender.setText(user.getGender());
-                tvPhone.setText(user.getPhone());
+                metName.setText(user.getName());
+                metGender.setText(user.getGender());
+                metPhone.setText(user.getPhone());
                 tvEmail.setText(user.getEmail());
                 metAddress.setText(user.getAddress());
                 metUPassword.setText(user.getPassword());
