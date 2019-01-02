@@ -25,6 +25,7 @@ import com.example.dan.ahiro.adapter.produkAdapter;
 import com.example.dan.ahiro.model.Keranjang;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
@@ -41,8 +42,6 @@ import java.util.List;
 public class KeranjangFragment extends Fragment {
 
     private Toolbar toolbar;
-    String[] list;
-    MaterialSearchView searchView1;
     DatabaseReference databaseReference;
     FirebaseRecyclerOptions<Keranjang> options;
     FirebaseRecyclerAdapter<Keranjang, keranjangAdapter> adapter;
@@ -70,44 +69,14 @@ public class KeranjangFragment extends Fragment {
 
         toolbar = (Toolbar) v.findViewById(R.id.tbKeranjang);
         AppCompatActivity activity = (AppCompatActivity) getActivity();
-        databaseReference = FirebaseDatabase.getInstance().getReference("Carts");
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Carts")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         RecyclerView rvKeranjang = (RecyclerView) v.findViewById(R.id.rvKeranjang);
 
 
         activity.setSupportActionBar(toolbar);
         activity.getSupportActionBar().setTitle("Keranjang");
         toolbar.setTitleTextColor(Color.parseColor("#FFFFFF"));
-
-        list = new String[]{"Keranjang 1", "Keranjang 2", "Keranjang 1", "Keranjang 2"};
-
-        searchView1 =(MaterialSearchView) v.findViewById(R.id.search_view);
-        searchView1.closeSearch();
-        searchView1.setSuggestions(list);
-        searchView1.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
-
-            @Override
-          public void onSearchViewShown() {
-
-            }
-
-            @Override
-           public void onSearchViewClosed() {
-
-            }
-        });
-
-        searchView1.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                return false;
-            }
-        });
-
 
         //Recycler View
         options = new FirebaseRecyclerOptions.Builder<Keranjang>()
@@ -130,26 +99,26 @@ public class KeranjangFragment extends Fragment {
                     }
                 });
 
-                holder.itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-//                        Toast.makeText(getContext(),"You clicked view", Toast.LENGTH_SHORT).show();
-                        String productname = model.getProductname();
-                        String description = model.getDescription();
-                        String weight = model.getWeight();
-                        String price = model.getPrice();
-                        String stock = model.getStock();
-
-                        Intent intent = new Intent(getContext(), DetailProductActivity.class);
-                        intent.putExtra("productId",adapter.getRef(position).getKey());//passing productId
-                        intent.putExtra("productname", productname);
-                        intent.putExtra("description", description);
-                        intent.putExtra("weight", weight);
-                        intent.putExtra("price", price);
-                        intent.putExtra("stock", stock);
-                        startActivity(intent);
-                    }
-                });
+//                holder.itemView.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+////                        Toast.makeText(getContext(),"You clicked view", Toast.LENGTH_SHORT).show();
+//                        String productname = model.getProductname();
+//                        String description = model.getDescription();
+//                        String weight = model.getWeight();
+//                        String price = model.getPrice();
+//                        String stock = model.getStock();
+//
+//                        Intent intent = new Intent(getContext(), DetailProductActivity.class);
+//                        intent.putExtra("productId",adapter.getRef(position).getKey());//passing productId
+//                        intent.putExtra("productname", productname);
+//                        intent.putExtra("description", description);
+//                        intent.putExtra("weight", weight);
+//                        intent.putExtra("price", price);
+//                        intent.putExtra("stock", stock);
+//                        startActivity(intent);
+//                    }
+//                });
             }
 
             @Override
@@ -161,20 +130,20 @@ public class KeranjangFragment extends Fragment {
         };
 
         rvKeranjang.setHasFixedSize(true);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),2);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),1);
         rvKeranjang.setLayoutManager(gridLayoutManager);
         adapter.startListening();
         rvKeranjang.setAdapter(adapter);
         return v;
         }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu, menu);
-        searchView1 = (MaterialSearchView)getActivity().findViewById(R.id.search_view);
-        MenuItem item = menu.findItem(R.id.action_search);
-        searchView1.setMenuItem(item);
-    }
+//    @Override
+//    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+//        inflater.inflate(R.menu.menu, menu);
+////        searchView1 = (MaterialSearchView)getActivity().findViewById(R.id.search_view);
+//        MenuItem item = menu.findItem(R.id.action_search);
+////        searchView1.setMenuItem(item);
+//    }
 
     @Override
     public void onStart() {

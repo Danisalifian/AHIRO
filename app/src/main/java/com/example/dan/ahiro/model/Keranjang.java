@@ -5,6 +5,10 @@ public class Keranjang {
     public String description;
     public String weight, price, stock, image;
 
+    public Keranjang(){
+
+    }
+
     public Keranjang(String productname, String description, String weight, String price, String stock, String image) {
         this.productname = productname;
         this.description = description;
