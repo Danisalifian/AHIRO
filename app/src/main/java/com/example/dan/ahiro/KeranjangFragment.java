@@ -85,7 +85,8 @@ public class KeranjangFragment extends Fragment {
             @Override
             protected void onBindViewHolder(keranjangAdapter holder, final int position, final Keranjang model) {
                 holder.tvNamaProduk.setText(model.getProductname());
-                holder.tvHarga.setText(model.getPrice());
+                holder.tvHarga.setText("Rp. " +model.getPrice());
+                holder.tvStok.setText(model.getStock());
                 Picasso.get().load(model.getImage()).into(holder.ivGambar, new Callback() {
 
                     @Override
@@ -98,7 +99,7 @@ public class KeranjangFragment extends Fragment {
                         Toast.makeText(getContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
                     }
                 });
-/*
+
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -118,7 +119,7 @@ public class KeranjangFragment extends Fragment {
                        intent.putExtra("stock", stock);
                         startActivity(intent);
                     }
-                }); */
+                });
             }
 
             @Override

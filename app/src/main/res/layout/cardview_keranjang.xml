@@ -47,7 +47,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/tvJumlah"
+            android:id="@+id/tvStok"
             android:text="Jumlah"
             android:textColor="@android:color/black"
             android:layout_marginLeft="180dp"
