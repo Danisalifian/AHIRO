@@ -98,32 +98,32 @@ public class KeranjangFragment extends Fragment {
                         Toast.makeText(getContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
                     }
                 });
+/*
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(getContext(),"You clicked view", Toast.LENGTH_SHORT).show();
+                        String productname = model.getProductname();
+                        String description = model.getDescription();
+                        String weight = model.getWeight();
+                        String price = model.getPrice();
+                        String stock = model.getStock();
 
-//                holder.itemView.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-////                        Toast.makeText(getContext(),"You clicked view", Toast.LENGTH_SHORT).show();
-//                        String productname = model.getProductname();
-//                        String description = model.getDescription();
-//                        String weight = model.getWeight();
-//                        String price = model.getPrice();
-//                        String stock = model.getStock();
-//
-//                        Intent intent = new Intent(getContext(), DetailProductActivity.class);
-//                        intent.putExtra("productId",adapter.getRef(position).getKey());//passing productId
-//                        intent.putExtra("productname", productname);
-//                        intent.putExtra("description", description);
-//                        intent.putExtra("weight", weight);
-//                        intent.putExtra("price", price);
-//                        intent.putExtra("stock", stock);
-//                        startActivity(intent);
-//                    }
-//                });
+                        Intent intent = new Intent(getContext(), DetailProductActivity.class);
+                        intent.putExtra("productId",adapter.getRef(position).getKey());//passing productId
+                        intent.putExtra("productname", productname);
+                        intent.putExtra("description", description);
+                       intent.putExtra("weight", weight);
+                        intent.putExtra("price", price);
+                       intent.putExtra("stock", stock);
+                        startActivity(intent);
+                    }
+                }); */
             }
 
             @Override
             public keranjangAdapter onCreateViewHolder(ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_produk,parent,false);
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_keranjang,parent,false);
 
                 return new keranjangAdapter(view);
             }
