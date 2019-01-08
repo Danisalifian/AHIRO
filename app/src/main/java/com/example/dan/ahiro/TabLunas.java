@@ -3,6 +3,7 @@ package com.example.dan.ahiro;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,8 +11,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toolbar;
 
-import com.example.dan.ahiro.adapter.belumlunasAdapter;
+//import com.example.dan.ahiro.adapter.belumlunasAdapter;
+import com.example.dan.ahiro.Model.Order;
+import com.example.dan.ahiro.adapter.OrderAdapter;
 import com.example.dan.ahiro.model.BelumLunas;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,11 +31,10 @@ import java.util.List;
  */
 public class TabLunas extends Fragment {
 
-    List<BelumLunas> LunasList;
-    private Toolbar toolbar;
-    String[] list;
-
-    private static final String TAG = "Tab Lunas";
+    DatabaseReference databaseReference;
+    FirebaseRecyclerOptions<Order> options;
+    FirebaseRecyclerAdapter<Order, OrderAdapter> adapter;
+    RecyclerView rvLunas;
 
     public TabLunas() {
         // Required empty public constructor
@@ -40,25 +48,62 @@ public class TabLunas extends Fragment {
         View v =  inflater.inflate(R.layout.fragment_tab_lunas, container, false);
         setHasOptionsMenu(true);
 
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Orders").child(uid);
+        Query query = databaseReference.orderByChild("status").equalTo("lunas");
+        rvLunas = v.findViewById(R.id.rvLunas);
 
-        list = new String[]{"Produk 1", "Produk 2", "Aproduk 1", "Aproduk 2"};
+        options = new FirebaseRecyclerOptions.Builder<Order>()
+                .setQuery(query, Order.class).build();
+        adapter = new FirebaseRecyclerAdapter<Order, OrderAdapter>(options) {
+            @Override
+            protected void onBindViewHolder(OrderAdapter holder, int position, Order model) {
+                holder.tvTanggal.setText(model.getTimestamp());
+                holder.tvHargaproduk.setText("Rp. " + model.getProductfee());
+                holder.tvBiayakirim.setText("Rp. " + model.getShipmentfee());
+                holder.tvTotalbayar.setText("Rp. " + model.getTotalpayment());
+            }
 
-        LunasList = new ArrayList<>();
-        LunasList.add(new BelumLunas("Produk1","100000","20","vit","21"));
-        LunasList.add(new BelumLunas("Produk2","100000","20","vit","21"));
-        LunasList.add(new BelumLunas("Produk3","100000","20","vit","21"));
-        LunasList.add(new BelumLunas("Produk4","100000","20","vit","21"));
-        LunasList.add(new BelumLunas("Produk5","100000","20","vit","21"));
-        LunasList.add(new BelumLunas("Produk6","100000","20","vit","21"));
-        LunasList.add(new BelumLunas("Produk7","100000","20","vit","21"));
+            @Override
+            public OrderAdapter onCreateViewHolder(ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_transaksi, parent,false);
 
-        RecyclerView rvlunas = (RecyclerView)v.findViewById(R.id.rvlunas);
-        belumlunasAdapter myAdapter = new belumlunasAdapter(getContext(),LunasList);
-        rvlunas.setLayoutManager(new GridLayoutManager(getContext(),1));
-        rvlunas.setAdapter(myAdapter);
+                return new OrderAdapter(view);
+            }
+        };
+
+        rvLunas.setHasFixedSize(true);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 1);
+        rvLunas.setLayoutManager(gridLayoutManager);
+        adapter.startListening();
+        rvLunas.setAdapter(adapter);
 
         return v;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (adapter != null){
+            adapter.startListening();
+        }
+    }
+
+    @Override
+    public void onStop() {
+        if (adapter != null){
+            adapter.stopListening();
+        }
+        super.onStop();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (adapter != null){
+            adapter.startListening();
+        }
     }
 
 }

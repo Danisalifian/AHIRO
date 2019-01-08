@@ -3,8 +3,6 @@ package com.example.dan.ahiro;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -137,7 +135,7 @@ public class DetailProductActivity extends AppCompatActivity {
         btnLanjutbayar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Order.class);
+                Intent intent = new Intent(getApplicationContext(), OrderActivity.class);
                 intent.putExtra("productId", productId);
                 startActivityForResult(intent,999);
             }

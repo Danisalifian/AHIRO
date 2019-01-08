@@ -9,7 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-public class Order extends AppCompatActivity {
+public class OrderActivity extends AppCompatActivity {
 
     Toolbar toolbar;
 //    TextView IDproduk;

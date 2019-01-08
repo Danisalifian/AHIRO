@@ -31,7 +31,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Order"
+        <activity android:name=".OrderActivity"
             android:parentActivityName=".DetailProductActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>

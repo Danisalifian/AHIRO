@@ -1,23 +1,24 @@
 package com.example.dan.ahiro;
 
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toolbar;
 
-import com.example.dan.ahiro.adapter.belumlunasAdapter;
-import com.example.dan.ahiro.model.BelumLunas;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.example.dan.ahiro.Model.Order;
+import com.example.dan.ahiro.adapter.OrderAdapter;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 
 /**
@@ -25,12 +26,10 @@ import java.util.List;
  */
 public class TabBelumLunas extends Fragment {
 
-
-    List<BelumLunas> belumLunasList;
-    private Toolbar toolbar;
-    String[] list;
-
-    //private static final String TAG = "Tab Belum Lunas";
+    DatabaseReference databaseReference;
+    FirebaseRecyclerOptions<Order> options;
+    FirebaseRecyclerAdapter<Order, OrderAdapter> adapter;
+    RecyclerView rvBelumlunas;
 
     public TabBelumLunas() {
         // Required empty public constructor
@@ -48,24 +47,62 @@ public class TabBelumLunas extends Fragment {
         View v = inflater.inflate(R.layout.fragment_tab_belum_lunas,container,false);
         setHasOptionsMenu(true);
 
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Orders").child(uid);
+        Query query = databaseReference.orderByChild("status").equalTo("belum lunas");
+        rvBelumlunas = v.findViewById(R.id.rvBelumlunas);
 
-        list = new String[]{"Produk 1", "Produk 2", "Aproduk 1", "Aproduk 2"};
+        //Recycler View
+        options = new FirebaseRecyclerOptions.Builder<Order>()
+                .setQuery(query, Order.class).build();
+        adapter = new FirebaseRecyclerAdapter<Order, OrderAdapter>(options) {
+            @Override
+            protected void onBindViewHolder(OrderAdapter holder, int position, Order model) {
+                holder.tvTanggal.setText(model.getTimestamp());
+                holder.tvHargaproduk.setText("Rp. " + model.getProductfee());
+                holder.tvBiayakirim.setText("Rp. " + model.getShipmentfee());
+                holder.tvTotalbayar.setText("Rp. " + model.getTotalpayment());
+            }
 
-        belumLunasList = new ArrayList<>();
-        belumLunasList.add(new BelumLunas("Produk1","20000","100","Vit","10"));
-        belumLunasList.add(new BelumLunas("Produk2","20000","100","Vit","10"));
-        belumLunasList.add(new BelumLunas("Produk3","20000","100","Vit","10"));
-        belumLunasList.add(new BelumLunas("Produk4","20000","100","Vit","10"));
-        belumLunasList.add(new BelumLunas("Produk5","20000","100","Vit","10"));
-        belumLunasList.add(new BelumLunas("Produk6","20000","100","Vit","10"));
+            @Override
+            public OrderAdapter onCreateViewHolder(ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_transaksi, parent,false);
 
-        RecyclerView rvBlunas = (RecyclerView)v.findViewById(R.id.rvBlunas);
-        belumlunasAdapter myAdapter = new belumlunasAdapter(getContext(),belumLunasList);
-        rvBlunas.setLayoutManager(new GridLayoutManager(getContext(),1));
-        rvBlunas.setAdapter(myAdapter);
+                return new OrderAdapter(view);
+            }
+        };
+
+        rvBelumlunas.setHasFixedSize(true);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 1);
+        rvBelumlunas.setLayoutManager(gridLayoutManager);
+        adapter.startListening();
+        rvBelumlunas.setAdapter(adapter);
 
         return v;
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (adapter != null){
+            adapter.startListening();
+        }
+    }
+
+    @Override
+    public void onStop() {
+        if (adapter != null){
+            adapter.stopListening();
+        }
+        super.onStop();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (adapter != null){
+            adapter.startListening();
+        }
+    }
 }

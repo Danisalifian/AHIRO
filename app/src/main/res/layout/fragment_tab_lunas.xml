@@ -3,14 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".TabBelumLunas">
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/rvlunas"
-        android:layout_below="@+id/tblunas">
+        android:id="@+id/rvLunas">
     </android.support.v7.widget.RecyclerView>
 
 </RelativeLayout>
