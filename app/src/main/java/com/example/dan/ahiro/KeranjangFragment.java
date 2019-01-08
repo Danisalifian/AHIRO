@@ -86,7 +86,7 @@ public class KeranjangFragment extends Fragment {
             protected void onBindViewHolder(keranjangAdapter holder, final int position, final Keranjang model) {
                 holder.tvNamaProduk.setText(model.getProductname());
                 holder.tvHarga.setText("Rp. " +model.getPrice());
-                holder.tvStok.setText(model.getStock());
+                holder.tvQty.setText(model.getQuantity());
                 Picasso.get().load(model.getImage()).into(holder.ivGambar, new Callback() {
 
                     @Override
@@ -105,18 +105,16 @@ public class KeranjangFragment extends Fragment {
                     public void onClick(View view) {
                         Toast.makeText(getContext(),"You clicked view", Toast.LENGTH_SHORT).show();
                         String productname = model.getProductname();
-                        String description = model.getDescription();
-                        String weight = model.getWeight();
                         String price = model.getPrice();
-                        String stock = model.getStock();
+                        String quantity = model.getQuantity();
+                        String subtotal = model.getSubtotal();
 
                         Intent intent = new Intent(getContext(), DetailProductActivity.class);
                         intent.putExtra("productId",adapter.getRef(position).getKey());//passing productId
                         intent.putExtra("productname", productname);
-                        intent.putExtra("description", description);
-                       intent.putExtra("weight", weight);
                         intent.putExtra("price", price);
-                       intent.putExtra("stock", stock);
+                        intent.putExtra("quantity",quantity);
+                        intent.putExtra("subtotal",subtotal);
                         startActivity(intent);
                     }
                 });

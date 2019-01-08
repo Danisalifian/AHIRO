@@ -1,21 +1,18 @@
 package com.example.dan.ahiro.model;
 
 public class Keranjang {
-    public String productname;
-    public String description;
-    public String weight, price, stock, image;
+    public String productname,price,image, quantity, subtotal;
 
     public Keranjang(){
 
     }
 
-    public Keranjang(String productname, String description, String weight, String price, String stock, String image) {
+    public Keranjang(String productname, String price, String image, String quantity, String subtotal) {
         this.productname = productname;
-        this.description = description;
-        this.weight = weight;
         this.price = price;
-        this.stock = stock;
         this.image = image;
+        this.quantity = quantity;
+        this.subtotal = subtotal;
     }
 
     public String getProductname() {
@@ -26,22 +23,6 @@ public class Keranjang {
         this.productname = productname;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getWeight() {
-        return weight;
-    }
-
-    public void setWeight(String weight) {
-        this.weight = weight;
-    }
-
     public String getPrice() {
         return price;
     }
@@ -50,19 +31,27 @@ public class Keranjang {
         this.price = price;
     }
 
-    public String getStock() {
-        return stock;
-    }
-
-    public void setStock(String stock) {
-        this.stock = stock;
-    }
-
     public String getImage() {
         return image;
     }
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
+    }
+
+    public String getSubtotal() {
+        return subtotal;
+    }
+
+    public void setSubtotal(String subtotal) {
+        this.subtotal = subtotal;
     }
 }
