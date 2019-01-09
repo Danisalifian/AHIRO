@@ -2,11 +2,11 @@ package com.example.dan.ahiro.Model;
 
 public class Order {
 
-    public String information, productfee, shipaddress, shipmentfee, status, timestamp, totalpayment;
+    public String information, productfee, shipaddress, shipmentfee, status, timestamp, totalpayment, recipient, phone;
 
     public Order(){}
 
-    public Order(String information, String productfee, String shipaddress, String shipmentfee, String status, String timestamp, String totalpayment) {
+    public Order(String information, String productfee, String shipaddress, String shipmentfee, String status, String timestamp, String totalpayment, String recipient, String phone) {
         this.information = information;
         this.productfee = productfee;
         this.shipaddress = shipaddress;
@@ -14,6 +14,8 @@ public class Order {
         this.status = status;
         this.timestamp = timestamp;
         this.totalpayment = totalpayment;
+        this.recipient = recipient;
+        this.phone = phone;
     }
 
     public String getInformation() {
@@ -70,5 +72,21 @@ public class Order {
 
     public void setTotalpayment(String totalpayment) {
         this.totalpayment = totalpayment;
+    }
+
+    public String getRecipient() {
+        return recipient;
+    }
+
+    public void setRecipient(String recipient) {
+        this.recipient = recipient;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

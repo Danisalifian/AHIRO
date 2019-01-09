@@ -8,7 +8,7 @@ import com.example.dan.ahiro.R;
 
 public class OrderAdapter extends RecyclerView.ViewHolder {
 
-    public TextView tvTanggal, tvHargaproduk, tvBiayakirim, tvTotalbayar;
+    public TextView tvTanggal, tvHargaproduk, tvBiayakirim, tvTotalbayar, tvPenerima;
 
     public OrderAdapter(View itemView) {
         super(itemView);
@@ -17,5 +17,6 @@ public class OrderAdapter extends RecyclerView.ViewHolder {
         tvTanggal = itemView.findViewById(R.id.tvTanggal);
         tvBiayakirim = itemView.findViewById(R.id.tvBiayakirim);
         tvTotalbayar = itemView.findViewById(R.id.tvTotalbayar);
+        tvPenerima = itemView.findViewById(R.id.tvPenerima);
     }
 }

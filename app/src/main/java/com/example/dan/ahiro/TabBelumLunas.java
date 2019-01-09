@@ -60,6 +60,7 @@ public class TabBelumLunas extends Fragment {
             @Override
             protected void onBindViewHolder(OrderAdapter holder, int position, Order model) {
                 holder.tvTanggal.setText(model.getTimestamp());
+                holder.tvPenerima.setText(model.getRecipient());
                 holder.tvHargaproduk.setText("Rp. " + model.getProductfee());
                 holder.tvBiayakirim.setText("Rp. " + model.getShipmentfee());
                 holder.tvTotalbayar.setText("Rp. " + model.getTotalpayment());
