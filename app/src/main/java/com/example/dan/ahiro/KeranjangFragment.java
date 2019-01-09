@@ -42,7 +42,7 @@ import java.util.List;
 public class KeranjangFragment extends Fragment {
 
     private Toolbar toolbar;
-    DatabaseReference databaseReference;
+    DatabaseReference databaseReference, hpsrf;
     FirebaseRecyclerOptions<Keranjang> options;
     FirebaseRecyclerAdapter<Keranjang, keranjangAdapter> adapter;
     CardView cvKeranjang;
@@ -100,21 +100,38 @@ public class KeranjangFragment extends Fragment {
                     }
                 });
 
+                holder.btnhapus.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        //inisiasi
+                        hpsrf = FirebaseDatabase.getInstance().getReference().child("Carts")
+                                .child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+
+                        //hapus data
+                        hpsrf.removeValue();
+
+                    }
+
+                });
+
+
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Toast.makeText(getContext(),"You clicked view", Toast.LENGTH_SHORT).show();
                         String productname = model.getProductname();
+                        String description = model.getDesciption();
+                        String weight = model.getWeight();
                         String price = model.getPrice();
-                        String quantity = model.getQuantity();
-                        String subtotal = model.getSubtotal();
+                        String stock = model.getStock();
 
                         Intent intent = new Intent(getContext(), DetailProductActivity.class);
                         intent.putExtra("productId",adapter.getRef(position).getKey());//passing productId
                         intent.putExtra("productname", productname);
+                        intent.putExtra("description", description);
+                        intent.putExtra("weight", weight);
                         intent.putExtra("price", price);
-                        intent.putExtra("quantity",quantity);
-                        intent.putExtra("subtotal",subtotal);
+                        intent.putExtra("stock", stock);
                         startActivity(intent);
                     }
                 });
@@ -136,13 +153,6 @@ public class KeranjangFragment extends Fragment {
         return v;
         }
 
-//    @Override
-//    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-//        inflater.inflate(R.menu.menu, menu);
-////        searchView1 = (MaterialSearchView)getActivity().findViewById(R.id.search_view);
-//        MenuItem item = menu.findItem(R.id.action_search);
-////        searchView1.setMenuItem(item);
-//    }
 
     @Override
     public void onStart() {

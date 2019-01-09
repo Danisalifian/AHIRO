@@ -3,6 +3,7 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.dan.ahiro.R;
@@ -12,6 +13,7 @@ public class keranjangAdapter extends RecyclerView.ViewHolder {
     public TextView tvNamaProduk, tvHarga, tvQty;
     public CardView cvKeranjang;
     public ImageView ivGambar;
+    public Button btnhapus;
 
     public  keranjangAdapter(View itemView){
         super(itemView);
@@ -21,6 +23,7 @@ public class keranjangAdapter extends RecyclerView.ViewHolder {
         tvQty = itemView.findViewById(R.id.tvQty);
         cvKeranjang = itemView.findViewById(R.id.cvKeranjang);
         ivGambar = itemView.findViewById(R.id.ivGambar);
+        btnhapus = itemView.findViewById(R.id.btnhapus);
     }
 
 }

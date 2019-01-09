@@ -1,18 +1,21 @@
 package com.example.dan.ahiro.model;
 
 public class Keranjang {
-    public String productname,price,image, quantity, subtotal;
+    public String productname,price,image, quantity, subtotal, desciption, stock, weight ;
 
     public Keranjang(){
 
     }
 
-    public Keranjang(String productname, String price, String image, String quantity, String subtotal) {
+    public Keranjang(String productname, String desciption, String stock, String weight, String price, String image, String quantity, String subtotal) {
         this.productname = productname;
         this.price = price;
         this.image = image;
         this.quantity = quantity;
         this.subtotal = subtotal;
+        this.desciption = desciption;
+        this.stock = stock;
+        this.weight = weight;
     }
 
     public String getProductname() {
@@ -53,5 +56,29 @@ public class Keranjang {
 
     public void setSubtotal(String subtotal) {
         this.subtotal = subtotal;
+    }
+
+    public String getStock() {
+        return stock;
+    }
+
+    public void setStock(String stock) {
+        this.stock = stock;
+    }
+
+    public String getWeight() {
+        return weight;
+    }
+
+    public void setWeight(String weight) {
+        this.weight = weight;
+    }
+
+    public String getDesciption() {
+        return desciption;
+    }
+
+    public void setDesciption(String desciption) {
+        this.desciption = desciption;
     }
 }
