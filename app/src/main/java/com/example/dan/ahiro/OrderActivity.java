@@ -169,7 +169,7 @@ public class OrderActivity extends AppCompatActivity {
                                             , Toast.LENGTH_SHORT).show();
 //                                    FirebaseDatabase.getInstance().getReference().child("Carts")
 //                                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).removeValue();
-////                                    startActivity(new Intent(OrderActivity.this, MainActivity.class));
+//                                    startActivity(new Intent(OrderActivity.this, MainActivity.class));
                                 }
                             }
                         });
