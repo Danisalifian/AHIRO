@@ -20,6 +20,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -59,7 +62,9 @@ public class TabBelumLunas extends Fragment {
         adapter = new FirebaseRecyclerAdapter<Order, OrderAdapter>(options) {
             @Override
             protected void onBindViewHolder(OrderAdapter holder, int position, Order model) {
-                holder.tvTanggal.setText(model.getTimestamp());
+                SimpleDateFormat sfd = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+
+                holder.tvTanggal.setText(sfd.format(new Date(model.getTimestamp())));
                 holder.tvPenerima.setText(model.getRecipient());
                 holder.tvHargaproduk.setText("Rp. " + model.getProductfee());
                 holder.tvBiayakirim.setText("Rp. " + model.getShipmentfee());

@@ -2,20 +2,21 @@ package com.example.dan.ahiro.Model;
 
 public class Order {
 
-    public String information, productfee, shipaddress, shipmentfee, status, timestamp, totalpayment, recipient, phone;
+    public String information, productfee, shipaddress, shipmentfee, status, totalpayment, recipient, phone;
+    public long timestamp;
 
     public Order(){}
 
-    public Order(String information, String productfee, String shipaddress, String shipmentfee, String status, String timestamp, String totalpayment, String recipient, String phone) {
+    public Order(String information, String productfee, String shipaddress, String shipmentfee, String status, String totalpayment, String recipient, String phone, long timestamp) {
         this.information = information;
         this.productfee = productfee;
         this.shipaddress = shipaddress;
         this.shipmentfee = shipmentfee;
         this.status = status;
-        this.timestamp = timestamp;
         this.totalpayment = totalpayment;
         this.recipient = recipient;
         this.phone = phone;
+        this.timestamp = timestamp;
     }
 
     public String getInformation() {
@@ -58,11 +59,11 @@ public class Order {
         this.status = status;
     }
 
-    public String getTimestamp() {
+    public long getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(String timestamp) {
+    public void setTimestamp(long timestamp) {
         this.timestamp = timestamp;
     }
 
