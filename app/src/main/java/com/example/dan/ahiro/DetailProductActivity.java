@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.support.v7.app.AppCompatActivity;
@@ -40,6 +41,7 @@ public class DetailProductActivity extends AppCompatActivity {
     Toolbar toolbar;
     private Dialog order_dialog;
     Button btnDOrder, btnLanjutbayar, btnOrderlagi;
+    ImageButton btnCart;
 
     private String productId = "";
 
@@ -77,6 +79,7 @@ public class DetailProductActivity extends AppCompatActivity {
         numberButton = findViewById(R.id.number_button);
         order_dialog = new Dialog(this);
         btnDOrder = findViewById(R.id.btnDOrder);
+        btnCart = findViewById(R.id.btnCart);
 
 //        collapsingToolbarLayout.setExpandedTitleColor(R.style.ExpandedAppbar);
 //        collapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.CollapsedAppbar);
@@ -87,6 +90,56 @@ public class DetailProductActivity extends AppCompatActivity {
         if (!productId.isEmpty()){
             getDetailProduct(productId);
         }
+
+        btnCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                products.child(productId).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        final DatabaseReference newCart = carts.child(productId);
+
+                        Intent Sintent = getIntent();
+                        String Sproductname = Sintent.getExtras().getString("productname");
+                        String Sprice = Sintent.getExtras().getString("price");
+                        String Simage = Sintent.getExtras().getString("image");
+
+                        int jumlah = Integer.parseInt(numberButton.getNumber());
+                        int harga = Integer.parseInt(Sprice);
+                        int Subtotal = harga * jumlah;
+
+                        final Map cartMap = new HashMap();
+                        cartMap.put("productname", Sproductname);
+                        cartMap.put("price", Sprice);
+                        cartMap.put("quantity", numberButton.getNumber());
+                        cartMap.put("subtotal", Integer.toString(Subtotal));
+                        cartMap.put("image", Simage);
+
+                        Thread mainThread = new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                newCart.setValue(cartMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()){
+                                            Toast.makeText(DetailProductActivity.this, "Ditambahkan ke keranjang"
+                                                    , Toast.LENGTH_SHORT).show();
+//                                            showOderdialog();
+                                        }
+                                    }
+                                });
+                            }
+                        });
+                        mainThread.start();
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+            }
+        });
 
         btnDOrder.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -200,6 +253,7 @@ public class DetailProductActivity extends AppCompatActivity {
                 Intent Sintent = getIntent();
                 String Sproductname = Sintent.getExtras().getString("productname");
                 String Sprice = Sintent.getExtras().getString("price");
+                String Simage = Sintent.getExtras().getString("image");
 
                 int jumlah = Integer.parseInt(numberButton.getNumber());
                 int harga = Integer.parseInt(Sprice);
@@ -210,6 +264,7 @@ public class DetailProductActivity extends AppCompatActivity {
                 cartMap.put("price", Sprice);
                 cartMap.put("quantity", numberButton.getNumber());
                 cartMap.put("subtotal", Integer.toString(Subtotal));
+                cartMap.put("image", Simage);
 
                 Thread mainThread = new Thread(new Runnable() {
                     @Override

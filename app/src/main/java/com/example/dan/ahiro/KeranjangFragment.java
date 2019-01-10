@@ -42,7 +42,7 @@ import java.util.List;
 public class KeranjangFragment extends Fragment {
 
     private Toolbar toolbar;
-    DatabaseReference databaseReference, hpsrf;
+    DatabaseReference databaseReference;
     FirebaseRecyclerOptions<Keranjang> options;
     FirebaseRecyclerAdapter<Keranjang, keranjangAdapter> adapter;
     CardView cvKeranjang;
@@ -103,13 +103,12 @@ public class KeranjangFragment extends Fragment {
                 holder.btnhapus.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        //inisiasi
-                        hpsrf = FirebaseDatabase.getInstance().getReference().child("Carts")
-                                .child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                        //hapus
+                        FirebaseDatabase.getInstance().getReference().child("Carts")
+                                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                .child(adapter.getRef(position).getKey()).removeValue();
 
-                        //hapus data
-                        hpsrf.removeValue();
-
+//                        Toast.makeText(getContext(), "Clicked",Toast.LENGTH_SHORT).show();
                     }
 
                 });

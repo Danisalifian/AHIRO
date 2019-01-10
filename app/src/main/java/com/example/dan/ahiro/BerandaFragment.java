@@ -96,6 +96,7 @@ public class BerandaFragment extends Fragment{
                         String weight = model.getWeight();
                         String price = model.getPrice();
                         String stock = model.getStock();
+                        String image = model.getImage();
 
                         Intent intent = new Intent(getContext(), DetailProductActivity.class);
                         intent.putExtra("productId",adapter.getRef(position).getKey());//passing productId
@@ -104,6 +105,7 @@ public class BerandaFragment extends Fragment{
                         intent.putExtra("weight", weight);
                         intent.putExtra("price", price);
                         intent.putExtra("stock", stock);
+                        intent.putExtra("image", image);
                         startActivity(intent);
                     }
                 });
@@ -117,6 +119,7 @@ public class BerandaFragment extends Fragment{
                         String weight = model.getWeight();
                         String price = model.getPrice();
                         String stock = model.getStock();
+                        String image = model.getImage();
 
                         Intent intent = new Intent(getContext(), DetailProductActivity.class);
                         intent.putExtra("productId",adapter.getRef(position).getKey());//passing productId
@@ -125,6 +128,7 @@ public class BerandaFragment extends Fragment{
                         intent.putExtra("weight", weight);
                         intent.putExtra("price", price);
                         intent.putExtra("stock", stock);
+                        intent.putExtra("image", image);
                         startActivity(intent);
                     }
                 });
