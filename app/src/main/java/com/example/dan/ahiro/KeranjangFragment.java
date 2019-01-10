@@ -7,33 +7,24 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.Toast;
 
 import com.example.dan.ahiro.adapter.keranjangAdapter;
-import com.example.dan.ahiro.adapter.produkAdapter;
 import com.example.dan.ahiro.model.Keranjang;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.miguelcatalan.materialsearchview.MaterialSearchView;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
-import java.util.List;
 
 
 /**
@@ -45,8 +36,6 @@ public class KeranjangFragment extends Fragment {
     DatabaseReference databaseReference;
     FirebaseRecyclerOptions<Keranjang> options;
     FirebaseRecyclerAdapter<Keranjang, keranjangAdapter> adapter;
-    CardView cvKeranjang;
-
 
     public KeranjangFragment() {
         // Required empty public constructor

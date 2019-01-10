@@ -56,7 +56,6 @@ public class PencarianActivity extends AppCompatActivity {
         btnCari.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(),"clicked",Toast.LENGTH_SHORT).show();
 
                 String katakunci = textcari.getText().toString();
 
@@ -64,7 +63,6 @@ public class PencarianActivity extends AppCompatActivity {
             }
         });
 
-//        Searching();
     }
 
     private void Searching(String katakunci){

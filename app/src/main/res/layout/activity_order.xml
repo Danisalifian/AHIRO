@@ -13,13 +13,104 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
     </android.support.v7.widget.Toolbar>
 
-    <android.support.v7.widget.RecyclerView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/OToolbar"
-        android:id="@+id/rvOrder">
+        android:layout_below="@+id/OToolbar">
 
-    </android.support.v7.widget.RecyclerView>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white">
 
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nama Penerima"
+                app:met_floatingLabel="highlight"
+                android:id="@+id/metRecipient"
+                android:textSize="15sp"
+                android:layout_margin="10dp"/>
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nomor Telepon"
+                android:inputType="number"
+                app:met_floatingLabel="highlight"
+                android:id="@+id/metPhone"
+                android:layout_below="@+id/metRecipient"
+                android:textSize="15sp"
+                android:layout_margin="10dp"/>
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Alamat Penerima"
+                app:met_floatingLabel="highlight"
+                android:id="@+id/metAddress"
+                android:layout_below="@+id/metPhone"
+                android:textSize="15sp"
+                android:layout_margin="10dp"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/metAddress"
+                android:id="@+id/rvListorder"
+                android:layout_margin="5dp">
+            </android.support.v7.widget.RecyclerView>
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/layoutTotal"
+                android:layout_below="@id/rvListorder">
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Total bayar"
+                        android:layout_margin="10dp"
+                        android:textSize="15sp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tvTotalbayar"
+                        android:text="Total bayar"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/black"
+                        android:layout_margin="10dp"
+                        android:textSize="15sp"/>
+
+                </TableRow>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Total bayar belum termasuk biaya pengiriman"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:textSize="10sp"/>
+
+            </TableLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnRorder"
+                android:layout_margin="10dp"
+                android:background="@drawable/rounded_button"
+                android:text="Ajukan Order"
+                android:textColor="@android:color/white"
+                android:textAllCaps="false"
+                android:layout_below="@id/layoutTotal"/>
+        </RelativeLayout>
+
+    </ScrollView>
 
 </RelativeLayout>

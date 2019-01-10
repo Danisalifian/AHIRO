@@ -3,11 +3,11 @@ package com.example.dan.ahiro.Model;
 public class Order {
 
     public String information, productfee, shipaddress, shipmentfee, status, totalpayment, recipient, phone;
-    public long timestamp;
+    public Long timestamp;
 
     public Order(){}
 
-    public Order(String information, String productfee, String shipaddress, String shipmentfee, String status, String totalpayment, String recipient, String phone, long timestamp) {
+    public Order(String information, String productfee, String shipaddress, String shipmentfee, String status, String totalpayment, String recipient, String phone, Long timestamp) {
         this.information = information;
         this.productfee = productfee;
         this.shipaddress = shipaddress;
@@ -59,11 +59,11 @@ public class Order {
         this.status = status;
     }
 
-    public long getTimestamp() {
+    public Long getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(long timestamp) {
+    public void setTimestamp(Long timestamp) {
         this.timestamp = timestamp;
     }
 
