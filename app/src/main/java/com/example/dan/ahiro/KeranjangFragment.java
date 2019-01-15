@@ -16,7 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.dan.ahiro.adapter.keranjangAdapter;
-import com.example.dan.ahiro.model.Keranjang;
+import com.example.dan.ahiro.Model.Keranjang;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
@@ -76,6 +76,7 @@ public class KeranjangFragment extends Fragment {
                 holder.tvNamaProduk.setText(model.getProductname());
                 holder.tvHarga.setText("Rp. " +model.getPrice());
                 holder.tvQty.setText(model.getQuantity());
+                holder.tvSubtotal.setText("Rp. " + model.getSubtotal());
                 Picasso.get().load(model.getImage()).into(holder.ivGambar, new Callback() {
 
                     @Override
@@ -106,20 +107,9 @@ public class KeranjangFragment extends Fragment {
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(getContext(),"You clicked view", Toast.LENGTH_SHORT).show();
-                        String productname = model.getProductname();
-                        String description = model.getDesciption();
-                        String weight = model.getWeight();
-                        String price = model.getPrice();
-                        String stock = model.getStock();
 
                         Intent intent = new Intent(getContext(), DetailProductActivity.class);
                         intent.putExtra("productId",adapter.getRef(position).getKey());//passing productId
-                        intent.putExtra("productname", productname);
-                        intent.putExtra("description", description);
-                        intent.putExtra("weight", weight);
-                        intent.putExtra("price", price);
-                        intent.putExtra("stock", stock);
                         startActivity(intent);
                     }
                 });

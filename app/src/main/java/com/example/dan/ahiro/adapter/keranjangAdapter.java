@@ -10,7 +10,7 @@ import com.example.dan.ahiro.R;
 
 
 public class keranjangAdapter extends RecyclerView.ViewHolder {
-    public TextView tvNamaProduk, tvHarga, tvQty;
+    public TextView tvNamaProduk, tvHarga, tvQty, tvSubtotal;
     public CardView cvKeranjang;
     public ImageView ivGambar;
     public Button btnhapus;
@@ -21,6 +21,7 @@ public class keranjangAdapter extends RecyclerView.ViewHolder {
         tvNamaProduk = itemView.findViewById(R.id.tvNamaProduk);
         tvHarga = itemView.findViewById(R.id.tvHarga);
         tvQty = itemView.findViewById(R.id.tvQty);
+        tvSubtotal = itemView.findViewById(R.id.tvSubtotal);
         cvKeranjang = itemView.findViewById(R.id.cvKeranjang);
         ivGambar = itemView.findViewById(R.id.ivGambar);
         btnhapus = itemView.findViewById(R.id.btnhapus);

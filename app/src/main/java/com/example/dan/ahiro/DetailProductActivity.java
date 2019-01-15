@@ -106,10 +106,12 @@ public class DetailProductActivity extends AppCompatActivity {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         final DatabaseReference newCart = carts.child(productId);
 
-                        Intent Sintent = getIntent();
-                        String Sproductname = Sintent.getExtras().getString("productname");
-                        String Sprice = Sintent.getExtras().getString("price");
-                        String Simage = Sintent.getExtras().getString("image");
+//                        Intent Sintent = getIntent();
+                        Produk produk = dataSnapshot.getValue(Produk.class);
+
+                        String Sproductname = produk.getProductname();
+                        String Sprice = produk.getPrice();
+                        String Simage = produk.getImage();
 
                         int jumlah = Integer.parseInt(numberButton.getNumber());
                         int harga = Integer.parseInt(Sprice);
@@ -149,7 +151,7 @@ public class DetailProductActivity extends AppCompatActivity {
         });
     }
 
-    private void showOderdialog() {
+    private void showOderdialog(final String productId) {
         LayoutInflater inflater = LayoutInflater.from(this);
         View v = inflater.inflate(R.layout.order_dialog, null);
 
@@ -164,19 +166,34 @@ public class DetailProductActivity extends AppCompatActivity {
         dialogJumlah = v.findViewById(R.id.dialogJumlah);
         dialogSubtotal = v.findViewById(R.id.dialogSubtotal);
 
-        Intent i = getIntent();
-        String Namaproduk = i.getExtras().getString("productname");
-        String Harga = i.getExtras().getString("price");
+        products.child(productId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Produk produk = dataSnapshot.getValue(Produk.class);
 
-        dialogNamaProduk.setText(Namaproduk);
-        dialogHarga.setText("Rp. " + Harga);
-        dialogJumlah.setText(numberButton.getNumber());
+                String Namaproduk = produk.getProductname();
+                String Harga = produk.getPrice();
 
-        int jumlah = Integer.parseInt(numberButton.getNumber());
-        int harga = Integer.parseInt(Harga);
-        int Subtotal = harga * jumlah;
+                dialogNamaProduk.setText(Namaproduk);
+                dialogHarga.setText("Rp. " + Harga);
+                dialogJumlah.setText(numberButton.getNumber());
 
-        dialogSubtotal.setText("Rp. " + Integer.toString(Subtotal));
+                int jumlah = Integer.parseInt(numberButton.getNumber());
+                int harga = Integer.parseInt(Harga);
+                int Subtotal = harga * jumlah;
+
+                dialogSubtotal.setText("Rp. " + Integer.toString(Subtotal));
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+//        Intent i = getIntent();
+//        String Namaproduk = i.getExtras().getString("productname");
+//        String Harga = i.getExtras().getString("price");
 
         orderClose.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -217,24 +234,16 @@ public class DetailProductActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Produk produk = dataSnapshot.getValue(Produk.class);
 
-                //Receive Data
-                Intent intent = getIntent();
-                String productname = intent.getExtras().getString("productname");
-                String description = intent.getExtras().getString("description");
-                String weight = intent.getExtras().getString("weight");
-                String price = intent.getExtras().getString("price");
-                String stock = intent.getExtras().getString("stock");
-
                 //Set Image
                 Picasso.get().load(produk.getImage()).into(ivGambar);
                 collapsingToolbarLayout.setTitle(produk.getProductname());
 
                 //Set values
-                tvDProduk.setText(productname);
-                tvDDeskripsi.setText(description);
-                tvDBerat.setText(weight);
-                tvDHarga.setText("Rp. " + price);
-                tvDStok.setText(stock);
+                tvDProduk.setText(produk.getProductname());
+                tvDDeskripsi.setText(produk.getDescription());
+                tvDBerat.setText(produk.getWeight());
+                tvDHarga.setText("Rp. " + produk.getPrice());
+                tvDStok.setText(produk.getStock());
             }
 
             @Override
@@ -250,10 +259,12 @@ public class DetailProductActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 final DatabaseReference newCart = carts.child(productId);
 
-                Intent Sintent = getIntent();
-                String Sproductname = Sintent.getExtras().getString("productname");
-                String Sprice = Sintent.getExtras().getString("price");
-                String Simage = Sintent.getExtras().getString("image");
+//                Intent Sintent = getIntent();
+                Produk produk = dataSnapshot.getValue(Produk.class);
+
+                String Sproductname = produk.getProductname();
+                String Sprice = produk.getPrice();
+                String Simage = produk.getImage();
 
                 int jumlah = Integer.parseInt(numberButton.getNumber());
                 int harga = Integer.parseInt(Sprice);
@@ -275,7 +286,7 @@ public class DetailProductActivity extends AppCompatActivity {
                                 if (task.isSuccessful()){
                                     Toast.makeText(DetailProductActivity.this, "Ditambahkan ke keranjang"
                                             , Toast.LENGTH_SHORT).show();
-                                    showOderdialog();
+                                    showOderdialog(productId);
                                 }
                             }
                         });

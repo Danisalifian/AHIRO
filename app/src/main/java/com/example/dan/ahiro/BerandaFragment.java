@@ -91,21 +91,9 @@ public class BerandaFragment extends Fragment{
                 holder.btnOrder.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        String productname = model.getProductname();
-                        String description = model.getDescription();
-                        String weight = model.getWeight();
-                        String price = model.getPrice();
-                        String stock = model.getStock();
-                        String image = model.getImage();
 
                         Intent intent = new Intent(getContext(), DetailProductActivity.class);
                         intent.putExtra("productId",adapter.getRef(position).getKey());//passing productId
-                        intent.putExtra("productname", productname);
-                        intent.putExtra("description", description);
-                        intent.putExtra("weight", weight);
-                        intent.putExtra("price", price);
-                        intent.putExtra("stock", stock);
-                        intent.putExtra("image", image);
                         startActivity(intent);
                     }
                 });
@@ -113,22 +101,9 @@ public class BerandaFragment extends Fragment{
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-//                        Toast.makeText(getContext(),"You clicked view", Toast.LENGTH_SHORT).show();
-                        String productname = model.getProductname();
-                        String description = model.getDescription();
-                        String weight = model.getWeight();
-                        String price = model.getPrice();
-                        String stock = model.getStock();
-                        String image = model.getImage();
 
                         Intent intent = new Intent(getContext(), DetailProductActivity.class);
                         intent.putExtra("productId",adapter.getRef(position).getKey());//passing productId
-                        intent.putExtra("productname", productname);
-                        intent.putExtra("description", description);
-                        intent.putExtra("weight", weight);
-                        intent.putExtra("price", price);
-                        intent.putExtra("stock", stock);
-                        intent.putExtra("image", image);
                         startActivity(intent);
                     }
                 });

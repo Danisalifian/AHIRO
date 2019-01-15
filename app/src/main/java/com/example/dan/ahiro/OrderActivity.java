@@ -27,7 +27,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
 import com.rengwuxian.materialedittext.MaterialEditText;
-import com.example.dan.ahiro.model.Keranjang;
+import com.example.dan.ahiro.Model.Keranjang;
 import com.example.dan.ahiro.adapter.keranjangAdapter;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
@@ -66,12 +66,35 @@ public class OrderActivity extends AppCompatActivity {
         metAddress = findViewById(R.id.metAddress);
         metPhone = findViewById(R.id.metPhone);
         btnRorder = findViewById(R.id.btnRorder);
+        tvTotalbayar = findViewById(R.id.tvTotalbayar);
 
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Carts")
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         rvListorder = findViewById(R.id.rvListorder);
 
         getDetailOrder();
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                int sum = 0;
+
+                for (DataSnapshot ds : dataSnapshot.getChildren()){
+                    Map<String, Object> map = (Map<String, Object>)ds.getValue();
+                    Object subtotal = map.get("subtotal");
+
+                    int pValue = Integer.parseInt(String.valueOf(subtotal));
+                    sum += pValue;
+
+                    tvTotalbayar.setText(String.valueOf(sum));
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         btnRorder.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -156,6 +179,10 @@ public class OrderActivity extends AppCompatActivity {
                 orderMap.put("shipaddress", metAddress.getText().toString().trim());
                 orderMap.put("phone", metPhone.getText().toString().trim());
                 orderMap.put("status","belum lunas");
+                orderMap.put("productfee", tvTotalbayar.getText().toString().trim());
+                orderMap.put("shipmentfee", "0");
+                orderMap.put("information", "menuggu kalkulasi biaya kirim");
+                orderMap.put("totalpayment", "0");
                 orderMap.put("timestamp", ServerValue.TIMESTAMP);
 
                 Thread mainThread = new Thread(new Runnable() {
