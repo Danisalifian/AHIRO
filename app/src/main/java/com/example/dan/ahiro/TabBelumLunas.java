@@ -1,6 +1,7 @@
 package com.example.dan.ahiro;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -61,7 +62,7 @@ public class TabBelumLunas extends Fragment {
                 .setQuery(query, Order.class).build();
         adapter = new FirebaseRecyclerAdapter<Order, OrderAdapter>(options) {
             @Override
-            protected void onBindViewHolder(OrderAdapter holder, int position, Order model) {
+            protected void onBindViewHolder(OrderAdapter holder, final int position, Order model) {
                 SimpleDateFormat sfd = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 
                 holder.tvTanggal.setText(sfd.format(new Date(model.getTimestamp())));
@@ -69,6 +70,16 @@ public class TabBelumLunas extends Fragment {
                 holder.tvHargaproduk.setText("Rp. " + model.getProductfee());
                 holder.tvBiayakirim.setText("Rp. " + model.getShipmentfee());
                 holder.tvTotalbayar.setText("Rp. " + model.getTotalpayment());
+
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        Intent intent = new Intent(getContext(), DetailTransaksi.class);
+                        intent.putExtra("orderId", adapter.getRef(position).getKey());//passing orderId
+                        startActivity(intent);
+                    }
+                });
             }
 
             @Override
