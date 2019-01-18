@@ -1,6 +1,8 @@
 package com.example.dan.ahiro;
 
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -90,7 +92,22 @@ public class AkunFragment extends Fragment {
         btnalmPerbarui.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                perbaruiAgen();
+                AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
+                alert.setTitle("Pemberitahuan");
+                alert.setMessage("Apakah anda yakin ingin menyimpan pembaruan ?");
+                alert.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        perbaruiAgen();
+                    }
+                });
+                alert.setNegativeButton("Batal", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+                alert.show();
             }
         });
 

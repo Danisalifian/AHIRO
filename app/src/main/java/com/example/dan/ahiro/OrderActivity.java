@@ -1,5 +1,7 @@
 package com.example.dan.ahiro;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -7,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -99,7 +102,15 @@ public class OrderActivity extends AppCompatActivity {
         btnRorder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SimpanOrder();
+                if (TextUtils.isEmpty(metRecipient.getText().toString().trim())){
+                    Toast.makeText(OrderActivity.this,"Silahkan isi nama penerima", Toast.LENGTH_SHORT).show();
+                } else if (TextUtils.isEmpty(metPhone.getText().toString().trim())){
+                    Toast.makeText(OrderActivity.this, "Silahkan isi nomor telepon", Toast.LENGTH_SHORT).show();
+                } else if (TextUtils.isEmpty(metAddress.getText().toString().trim())){
+                    Toast.makeText(OrderActivity.this,"Silahkan isi Alamat penerima", Toast.LENGTH_SHORT).show();
+                } else {
+                    SimpanOrder();
+                }
             }
         });
 
@@ -131,7 +142,7 @@ public class OrderActivity extends AppCompatActivity {
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(getApplicationContext(),"You clicked view", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getApplicationContext(),"You clicked view", Toast.LENGTH_SHORT).show();
                         String productname = model.getProductname();
                         String price = model.getPrice();
                         String quantity = model.getQuantity();
@@ -145,6 +156,33 @@ public class OrderActivity extends AppCompatActivity {
                         intent.putExtra("subtotal",subtotal);
                         startActivity(intent);
                     }
+                });
+
+                holder.btnhapus.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        AlertDialog.Builder alert = new AlertDialog.Builder(OrderActivity.this);
+                        alert.setTitle("Pemberitahuan");
+                        alert.setMessage("Apakah anda yakin ingin menghapus ?");
+                        alert.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                //hapus data
+                                FirebaseDatabase.getInstance().getReference().child("Carts")
+                                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                        .child(adapter.getRef(position).getKey()).removeValue();
+                            }
+                        });
+                        alert.setNegativeButton("Batal", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.dismiss();
+                            }
+                        });
+                        alert.show();
+                    }
+
                 });
             }
 
@@ -169,7 +207,7 @@ public class OrderActivity extends AppCompatActivity {
         carts = FirebaseDatabase.getInstance().getReference().child("Carts");
         orders = FirebaseDatabase.getInstance().getReference().child("Orders").child(uid);
 
-        carts.child(uid).addValueEventListener(new ValueEventListener() {
+        carts.child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 final DatabaseReference newOrder = orders.push();
@@ -182,7 +220,9 @@ public class OrderActivity extends AppCompatActivity {
                 orderMap.put("productfee", tvTotalbayar.getText().toString().trim());
                 orderMap.put("shipmentfee", "0");
                 orderMap.put("information", "menuggu kalkulasi biaya kirim");
-                orderMap.put("totalpayment", "0");
+                int productfee = Integer.parseInt(tvTotalbayar.getText().toString().trim());
+                int totalpayment = productfee + 0;
+                orderMap.put("totalpayment", Integer.toString(totalpayment));
                 orderMap.put("timestamp", ServerValue.TIMESTAMP);
 
                 Thread mainThread = new Thread(new Runnable() {
@@ -192,11 +232,26 @@ public class OrderActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()){
-                                    Toast.makeText(getApplicationContext(), "Berhasil melakukan order"
-                                            , Toast.LENGTH_SHORT).show();
-//                                    FirebaseDatabase.getInstance().getReference().child("Carts")
-//                                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).removeValue();
-//                                    startActivity(new Intent(OrderActivity.this, MainActivity.class));
+
+                                    AlertDialog.Builder alert = new AlertDialog.Builder(OrderActivity.this);
+                                    alert.setTitle("Pemberitahuan");
+                                    alert.setMessage("Permintaan order berhasil dikirim");
+                                    alert.setNeutralButton("Kembali ke beranda", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            //hapus keranjang setelah order disimpan
+                                            FirebaseDatabase.getInstance().getReference().child("Carts")
+                                                .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).removeValue();
+
+                                            startActivity(new Intent(OrderActivity.this, MainActivity.class));
+                                        }
+                                    });
+                                    alert.setCancelable(false);
+                                    alert.show();
+
+                                } else {
+                                    Toast.makeText(OrderActivity.this, "Error" + task.getException()
+                                            .getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
@@ -204,6 +259,7 @@ public class OrderActivity extends AppCompatActivity {
                 });
 
                 mainThread.start();
+
             }
 
             @Override

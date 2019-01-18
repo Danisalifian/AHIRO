@@ -1,6 +1,7 @@
 package com.example.dan.ahiro;
 
-
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -93,10 +94,27 @@ public class KeranjangFragment extends Fragment {
                 holder.btnhapus.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        //hapus
-                        FirebaseDatabase.getInstance().getReference().child("Carts")
-                                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                .child(adapter.getRef(position).getKey()).removeValue();
+
+                        AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
+                        alert.setTitle("Pemberitahuan");
+                        alert.setMessage("Apakah anda yakin ingin menghapus ?");
+                        alert.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                //hapus
+                                FirebaseDatabase.getInstance().getReference().child("Carts")
+                                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                        .child(adapter.getRef(position).getKey()).removeValue();
+                            }
+                        });
+                        alert.setNegativeButton("Batal", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.dismiss();
+                                Toast.makeText(getContext(), "Batal Menghapus",Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        alert.show();
 
 //                        Toast.makeText(getContext(), "Clicked",Toast.LENGTH_SHORT).show();
                     }
