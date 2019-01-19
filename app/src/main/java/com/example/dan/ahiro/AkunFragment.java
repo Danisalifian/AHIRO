@@ -30,6 +30,8 @@ import com.rengwuxian.materialedittext.MaterialEditText;
 import java.util.HashMap;
 import java.util.Map;
 
+import dmax.dialog.SpotsDialog;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -44,6 +46,7 @@ public class AkunFragment extends Fragment {
     DatabaseReference agenDB;
 
     private static final String TAG = "AkunFragment";
+    private AlertDialog dialog;
 
     public AkunFragment() {
         // Required empty public constructor
@@ -64,6 +67,7 @@ public class AkunFragment extends Fragment {
         metUPassword = v.findViewById(R.id.metUPassword);
         btnLogout = v.findViewById(R.id.btnLogout);
         btnalmPerbarui = v.findViewById(R.id.almPerbarui);
+        dialog = new SpotsDialog.Builder().setContext(getContext()).build();
 
         //get userId
         uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -98,6 +102,7 @@ public class AkunFragment extends Fragment {
                 alert.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        dialog.show();
                         perbaruiAgen();
                     }
                 });
@@ -127,6 +132,7 @@ public class AkunFragment extends Fragment {
         agenDB.updateChildren(updateMap).addOnSuccessListener(new OnSuccessListener() {
             @Override
             public void onSuccess(Object o) {
+                dialog.dismiss();
                 Toast.makeText(getContext(), "Data telah diperbarui", Toast.LENGTH_SHORT).show();
             }
         });

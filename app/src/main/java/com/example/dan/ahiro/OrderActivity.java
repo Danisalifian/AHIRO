@@ -38,6 +38,8 @@ import com.squareup.picasso.Picasso;
 import java.util.HashMap;
 import java.util.Map;
 
+import dmax.dialog.SpotsDialog;
+
 public class OrderActivity extends AppCompatActivity {
 
     Toolbar toolbar;
@@ -49,6 +51,8 @@ public class OrderActivity extends AppCompatActivity {
     FirebaseRecyclerOptions<Keranjang> options;
     FirebaseRecyclerAdapter<Keranjang, keranjangAdapter> adapter;
     Button btnRorder;
+
+    private AlertDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +74,7 @@ public class OrderActivity extends AppCompatActivity {
         metPhone = findViewById(R.id.metPhone);
         btnRorder = findViewById(R.id.btnRorder);
         tvTotalbayar = findViewById(R.id.tvTotalbayar);
+        dialog = new SpotsDialog.Builder().setContext(OrderActivity.this).build();
 
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Carts")
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid());
@@ -109,6 +114,7 @@ public class OrderActivity extends AppCompatActivity {
                 } else if (TextUtils.isEmpty(metAddress.getText().toString().trim())){
                     Toast.makeText(OrderActivity.this,"Silahkan isi Alamat penerima", Toast.LENGTH_SHORT).show();
                 } else {
+                    dialog.show();
                     SimpanOrder();
                 }
             }
@@ -246,6 +252,7 @@ public class OrderActivity extends AppCompatActivity {
                                             startActivity(new Intent(OrderActivity.this, MainActivity.class));
                                         }
                                     });
+                                    dialog.dismiss();
                                     alert.setCancelable(false);
                                     alert.show();
 

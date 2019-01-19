@@ -14,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.dan.ahiro.adapter.keranjangAdapter;
@@ -37,6 +38,7 @@ public class KeranjangFragment extends Fragment {
     DatabaseReference databaseReference;
     FirebaseRecyclerOptions<Keranjang> options;
     FirebaseRecyclerAdapter<Keranjang, keranjangAdapter> adapter;
+    Button btnLanjut;
 
     public KeranjangFragment() {
         // Required empty public constructor
@@ -62,11 +64,18 @@ public class KeranjangFragment extends Fragment {
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Carts")
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         RecyclerView rvKeranjang = (RecyclerView) v.findViewById(R.id.rvKeranjang);
-
+        btnLanjut = v.findViewById(R.id.btnLanjut);
 
         activity.setSupportActionBar(toolbar);
         activity.getSupportActionBar().setTitle("Keranjang");
         toolbar.setTitleTextColor(Color.parseColor("#FFFFFF"));
+
+        btnLanjut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), OrderActivity.class));
+            }
+        });
 
         //Recycler View
         options = new FirebaseRecyclerOptions.Builder<Keranjang>()
@@ -173,4 +182,6 @@ public class KeranjangFragment extends Fragment {
             adapter.startListening();
         }
     }
+
+
 }

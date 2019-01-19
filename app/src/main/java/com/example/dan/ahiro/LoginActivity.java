@@ -1,6 +1,7 @@
 package com.example.dan.ahiro;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -17,6 +18,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
+import dmax.dialog.SpotsDialog;
+
 public class LoginActivity extends Activity {
 
 //    private DatabaseReference dbReference;
@@ -25,6 +28,7 @@ public class LoginActivity extends Activity {
 
     Button btnLogin;
     private MaterialEditText metEmail, metPassword;
+    private AlertDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +48,8 @@ public class LoginActivity extends Activity {
         btnLogin = findViewById(R.id.btnLogin);
         metEmail = findViewById(R.id.metEmail);
         metPassword = findViewById(R.id.metPassword);
+        dialog = new SpotsDialog.Builder().setContext(LoginActivity.this).build();
+        dialog.setTitle("Mengautentikasi...");
 
         //Init Firebase
 //        dbReference = FirebaseDatabase.getInstance().getReference("Users");
@@ -51,6 +57,7 @@ public class LoginActivity extends Activity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                dialog.show();
                 userLogin();
             }
         });
@@ -78,6 +85,7 @@ public class LoginActivity extends Activity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (!task.isSuccessful()){
+                        dialog.dismiss();
                         Snackbar.make(btnLogin,"gagal autentikasi", Snackbar.LENGTH_SHORT).show();
                     }
                 }
