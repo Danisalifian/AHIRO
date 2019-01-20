@@ -54,6 +54,17 @@
                             android:textColor="@android:color/black"
                             android:textStyle="bold"/>
 
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/btnUbah"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentRight="true"
+                            android:text="Ubah"
+                            android:layout_margin="5dp"
+                            android:textAllCaps="false" />
+
                     </RelativeLayout>
 
                     <TextView
@@ -85,21 +96,6 @@
                         android:textSize="13sp"
                         android:textColor="@android:color/black"
                         android:layout_marginLeft="10dp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="Tanggal Lahir"
-                        android:layout_margin="10dp"/>
-
-                    <com.rengwuxian.materialedittext.MaterialEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="01-01-1990"
-                        android:textSize="13sp"
-                        android:textColor="@android:color/black"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginBottom="10dp"/>
 
                     <TextView
                         android:layout_width="wrap_content"

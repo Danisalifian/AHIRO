@@ -42,7 +42,7 @@ public class AkunFragment extends Fragment {
     private TextView tvEmail;
     private MaterialEditText metAddress, metUPassword, metName, metGender, metPhone;
     private String uid;
-    private Button btnLogout, btnalmPerbarui;
+    private Button btnLogout, btnalmPerbarui, btnUbah;
     DatabaseReference agenDB;
 
     private static final String TAG = "AkunFragment";
@@ -68,6 +68,23 @@ public class AkunFragment extends Fragment {
         btnLogout = v.findViewById(R.id.btnLogout);
         btnalmPerbarui = v.findViewById(R.id.almPerbarui);
         dialog = new SpotsDialog.Builder().setContext(getContext()).build();
+        btnUbah = v.findViewById(R.id.btnUbah);
+
+        btnUbah.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                metName.setEnabled(true);
+                metPhone.setEnabled(true);
+                metGender.setEnabled(true);
+                metAddress.setEnabled(true);
+            }
+        });
+
+        metUPassword.setEnabled(false);
+        metName.setEnabled(false);
+        metPhone.setEnabled(false);
+        metGender.setEnabled(false);
+        metAddress.setEnabled(false);
 
         //get userId
         uid = FirebaseAuth.getInstance().getCurrentUser().getUid();

@@ -129,67 +129,89 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Informasi Produk"
-                                android:id="@+id/tvInfo"
-                                android:layout_marginTop="12dp"
-                                android:lineSpacingMultiplier="1.5"
-                                android:padding="12dp"
-                                android:textColor="@android:color/black"
-                                android:textSize="18sp"
-                                android:textStyle="bold"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Berat"
-                                android:id="@+id/tvDBerat"
-                                android:layout_marginTop="12dp"
-                                android:lineSpacingMultiplier="1.5"
-                                android:padding="12dp"
-                                android:textColor="@android:color/black"
-                                android:textSize="15sp"
-                                android:layout_below="@id/tvInfo"/>
-
-                            <View
+                            <TableLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:alpha=".3"
-                                android:background="@android:color/black"
-                                android:layout_below="@id/tvDBerat"/>
+                                android:layout_height="wrap_content">
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Stok"
-                                android:id="@+id/tvDStok"
-                                android:layout_marginTop="12dp"
-                                android:lineSpacingMultiplier="1.5"
-                                android:padding="12dp"
-                                android:textColor="@android:color/black"
-                                android:textSize="15sp"
-                                android:layout_below="@id/tvDBerat"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Informasi Produk"
+                                    android:id="@+id/tvInfo"
+                                    android:layout_marginTop="12dp"
+                                    android:lineSpacingMultiplier="1.5"
+                                    android:padding="12dp"
+                                    android:textColor="@android:color/black"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold"/>
 
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:alpha=".3"
-                                android:background="@android:color/black"
-                                android:layout_below="@id/tvDStok"/>
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"
+                                    android:alpha=".3"
+                                    android:background="@android:color/black"
+                                    android:layout_below="@id/tvInfo"/>
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Deskripsi"
-                                android:id="@+id/tvDDeskripsi"
-                                android:layout_marginTop="12dp"
-                                android:lineSpacingMultiplier="1.5"
-                                android:padding="12dp"
-                                android:textColor="@android:color/black"
-                                android:textSize="15sp"
-                                android:layout_below="@id/tvDStok"/>
+                                <TableRow>
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Berat (gr)"
+                                        android:layout_marginTop="12dp"
+                                        android:lineSpacingMultiplier="1.5"
+                                        android:padding="12dp"
+                                        android:textColor="@android:color/black"
+                                        android:textSize="15sp"/>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Berat"
+                                        android:id="@+id/tvDBerat"
+                                        android:layout_marginTop="12dp"
+                                        android:lineSpacingMultiplier="1.5"
+                                        android:padding="12dp"
+                                        android:textColor="@android:color/black"
+                                        android:textSize="15sp"
+                                        android:layout_below="@id/tvInfo"/>
+
+                                </TableRow>
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"
+                                    android:alpha=".3"
+                                    android:background="@android:color/black"
+                                    android:layout_below="@id/tvDBerat"/>
+
+                                <TableRow>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Deskripsi"
+                                        android:layout_marginTop="12dp"
+                                        android:lineSpacingMultiplier="1.5"
+                                        android:padding="12dp"
+                                        android:textColor="@android:color/black"
+                                        android:textSize="15sp"/>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Deskripsi"
+                                        android:id="@+id/tvDDeskripsi"
+                                        android:layout_marginTop="12dp"
+                                        android:lineSpacingMultiplier="1.5"
+                                        android:padding="12dp"
+                                        android:textColor="@android:color/black"
+                                        android:textSize="15sp"
+                                        android:maxLines="6"
+                                        android:layout_below="@id/tvDBerat"/>
+
+                                </TableRow>
+
+                            </TableLayout>
 
                         </RelativeLayout>
                     </android.support.v7.widget.CardView>

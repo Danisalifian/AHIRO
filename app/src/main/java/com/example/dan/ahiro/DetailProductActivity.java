@@ -74,7 +74,6 @@ public class DetailProductActivity extends AppCompatActivity {
         tvDDeskripsi = findViewById(R.id.tvDDeskripsi);
         tvDBerat = findViewById(R.id.tvDBerat);
         tvDHarga = findViewById(R.id.tvDHarga);
-        tvDStok = findViewById(R.id.tvDStok);
         ivGambar = findViewById(R.id.ivGambar);
         numberButton = findViewById(R.id.number_button);
         order_dialog = new Dialog(this);
@@ -243,7 +242,7 @@ public class DetailProductActivity extends AppCompatActivity {
                 tvDDeskripsi.setText(produk.getDescription());
                 tvDBerat.setText(produk.getWeight());
                 tvDHarga.setText("Rp. " + produk.getPrice());
-                tvDStok.setText(produk.getStock());
+//                tvDStok.setText(produk.getStock());
             }
 
             @Override

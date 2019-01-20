@@ -27,6 +27,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
 import com.rengwuxian.materialedittext.MaterialEditText;
@@ -35,7 +36,9 @@ import com.example.dan.ahiro.adapter.keranjangAdapter;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import dmax.dialog.SpotsDialog;
@@ -53,6 +56,8 @@ public class OrderActivity extends AppCompatActivity {
     Button btnRorder;
 
     private AlertDialog dialog;
+    GenericTypeIndicator<List<Keranjang>> genericTypeIndicator;
+    List<Keranjang> keranjang;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -217,6 +222,14 @@ public class OrderActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 final DatabaseReference newOrder = orders.push();
+                List<Keranjang> listkeranjang = new ArrayList<>();
+
+                int i = 0;
+                for (DataSnapshot ds : dataSnapshot.getChildren()){
+
+                    Keranjang Mkeranjang = ds.getValue(Keranjang.class);
+                    listkeranjang.add(Mkeranjang);
+                }
 
                 final Map orderMap = new HashMap();
                 orderMap.put("recipient", metRecipient.getText().toString().trim());
@@ -225,6 +238,7 @@ public class OrderActivity extends AppCompatActivity {
                 orderMap.put("status","belum lunas");
                 orderMap.put("productfee", tvTotalbayar.getText().toString().trim());
                 orderMap.put("shipmentfee", "0");
+                orderMap.put("products",listkeranjang);
                 orderMap.put("information", "menuggu kalkulasi biaya kirim");
                 int productfee = Integer.parseInt(tvTotalbayar.getText().toString().trim());
                 int totalpayment = productfee + 0;
