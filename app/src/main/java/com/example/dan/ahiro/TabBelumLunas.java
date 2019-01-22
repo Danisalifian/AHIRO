@@ -53,8 +53,8 @@ public class TabBelumLunas extends Fragment {
 
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("Orders").child(uid);
-        Query query = databaseReference.orderByChild("status").equalTo("belum lunas");
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Orders");
+        Query query = databaseReference.orderByChild("clause").equalTo(uid + "_belumlunas");
         rvBelumlunas = v.findViewById(R.id.rvBelumlunas);
 
         //Recycler View

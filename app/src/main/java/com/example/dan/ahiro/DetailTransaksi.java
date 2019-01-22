@@ -70,7 +70,7 @@ public class DetailTransaksi extends AppCompatActivity {
         //Firebase
         database = FirebaseDatabase.getInstance();
         mAuth = FirebaseAuth.getInstance();
-        Orders = database.getReference().child("Orders").child(mAuth.getCurrentUser().getUid());
+        Orders = database.getReference().child("Orders");
 
         //get orderId
         if (getIntent() != null)

@@ -48,8 +48,8 @@ public class TabLunas extends Fragment {
 
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("Orders").child(uid);
-        Query query = databaseReference.orderByChild("status").equalTo("lunas");
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Orders");
+        Query query = databaseReference.orderByChild("clause").equalTo(uid + "_lunas");
         rvLunas = v.findViewById(R.id.rvLunas);
 
         options = new FirebaseRecyclerOptions.Builder<Order>()

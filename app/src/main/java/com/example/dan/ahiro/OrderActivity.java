@@ -214,9 +214,9 @@ public class OrderActivity extends AppCompatActivity {
     }
 
     private void SimpanOrder(){
-        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        final String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         carts = FirebaseDatabase.getInstance().getReference().child("Carts");
-        orders = FirebaseDatabase.getInstance().getReference().child("Orders").child(uid);
+        orders = FirebaseDatabase.getInstance().getReference().child("Orders");
 
         carts.child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -232,12 +232,14 @@ public class OrderActivity extends AppCompatActivity {
                 }
 
                 final Map orderMap = new HashMap();
+                orderMap.put("uid", uid);
                 orderMap.put("recipient", metRecipient.getText().toString().trim());
                 orderMap.put("shipaddress", metAddress.getText().toString().trim());
                 orderMap.put("phone", metPhone.getText().toString().trim());
                 orderMap.put("status","belum lunas");
                 orderMap.put("productfee", tvTotalbayar.getText().toString().trim());
                 orderMap.put("shipmentfee", "0");
+                orderMap.put("clause",uid + "_belumlunas");
                 orderMap.put("products",listkeranjang);
                 orderMap.put("information", "menuggu kalkulasi biaya kirim");
                 int productfee = Integer.parseInt(tvTotalbayar.getText().toString().trim());
