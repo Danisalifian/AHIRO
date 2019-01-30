@@ -57,7 +57,7 @@ public class LoginActivity extends Activity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dialog.show();
+
                 userLogin();
             }
         });
@@ -77,10 +77,11 @@ public class LoginActivity extends Activity {
         String password = metPassword.getText().toString();
 
         if (TextUtils.isEmpty(email.trim())) {
-            Snackbar.make(btnLogin, "Silahkan isi email", Snackbar.LENGTH_SHORT).show();
+            Snackbar.make(btnLogin, "Lengkapi field yang masih kosong", Snackbar.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(password.trim())) {
-            Snackbar.make(btnLogin, "Silahkan isi kata sandi", Snackbar.LENGTH_SHORT).show();
+            Snackbar.make(btnLogin, "Lengkapi field yang masih kosong", Snackbar.LENGTH_SHORT).show();
         } else {
+            dialog.show();
             mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {

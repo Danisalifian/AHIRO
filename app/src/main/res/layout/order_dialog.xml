@@ -38,7 +38,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Berhasil Masuk Keranjang"
+                    android:text="Berhasil menambah ke keranjang"
                     android:textColor="@android:color/black"
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="10dp"

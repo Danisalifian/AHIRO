@@ -66,6 +66,7 @@ public class OrderActivity extends AppCompatActivity {
 
         toolbar = findViewById(R.id.OToolbar);
         setSupportActionBar(toolbar);
+        toolbar.setTitle("Informasi Order");
 
         if (getSupportActionBar() != null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -113,11 +114,11 @@ public class OrderActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (TextUtils.isEmpty(metRecipient.getText().toString().trim())){
-                    Toast.makeText(OrderActivity.this,"Silahkan isi nama penerima", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(OrderActivity.this,"Lengkapi field yang masih kosong", Toast.LENGTH_SHORT).show();
                 } else if (TextUtils.isEmpty(metPhone.getText().toString().trim())){
-                    Toast.makeText(OrderActivity.this, "Silahkan isi nomor telepon", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(OrderActivity.this, "Lengkapi field yang masih kosong", Toast.LENGTH_SHORT).show();
                 } else if (TextUtils.isEmpty(metAddress.getText().toString().trim())){
-                    Toast.makeText(OrderActivity.this,"Silahkan isi Alamat penerima", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(OrderActivity.this,"Lengkapi field yang masih kosong", Toast.LENGTH_SHORT).show();
                 } else {
                     dialog.show();
                     SimpanOrder();
